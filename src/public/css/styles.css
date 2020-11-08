@@ -1,0 +1,42 @@
+.dropdown-menu {
+    width: 210px !important;
+}
+
+.dropdown-100px {
+    width: 300px !important;
+}
+
+.font-size-28 {
+    font-size: 28px;
+}
+
+.font-size-18 {
+    font-size: 18px;
+}
+
+.font-size-14 {
+    font-size: 14px;
+}
+
+.Santation {
+    font-family: Santation;
+}
+
+.text-decoration-underline {
+    text-decoration: underline;
+}
+
+body { 
+    padding-top: 110px; 
+}
+
+.search-style {
+    /* border-color: #809c70; */
+    /* border-width: 2px; */
+    width: 500px !important;
+    box-shadow: 3px 3px 3px 3px rgba(30, 22, 22, 0.14);;
+}
+
+.no-border {
+    border: none;
+}
