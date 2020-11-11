@@ -11,9 +11,37 @@
 }
 
 .grass {
-    color: #7f867b;
+    color: #809c70;
 }
 
 .soft_kiss {
     color: #eadad0;
+}
+
+.cream {
+    color: #efede7;
+}
+
+.bg-pink_nude {
+    background-color: #7f423d;
+}
+
+.bg-raspberry {
+    background-color: #6d1919;
+}
+
+.bg-red_vine {
+    background-color: #ba494b;
+}
+
+.bg-grass {
+    background-color: #809c70;
+}
+
+.bg-soft-kiss {
+    background-color: #eadad0;
+}
+
+.bg-cream {
+    background-color: #efede7;
 }
