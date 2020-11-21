@@ -18,6 +18,10 @@
     text-decoration: underline;
 }
 
+.no-bg {
+    background: none;
+}
+
 .no-border {
     border: none;
 }
@@ -27,18 +31,14 @@
     border-color: #809c70;
 }
 
-.no-bg {
-    background: none;
+.border-raspberry {
+    border: solid 2px;
+    border-color: #6d1919;
 }
 
 /* .border-pink_nude {
     border: solid 2px;
     border-color: #7f423d;
-}
-
-.border-raspberry {
-    border: solid 2px;
-    border-color: #6d1919;
 }
 
 .border-red_vine {
