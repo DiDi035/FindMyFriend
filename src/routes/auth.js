@@ -12,7 +12,7 @@ router.get("/register", (req, res) => {
   res.render("SignUp");
 });
 
-router.post("login", async (req, res) => {
+router.post("/login", async (req, res) => {
   const { username, password } = req.body;
   const { valid, foundUser } = await User.isAuthenticated(username, password);
   if (valid) {

@@ -1,7 +1,7 @@
 const express = require("express");
 const methodOverride = require("method-override");
 const mongoose = require("mongoose");
-const expressSession = require("express-session");
+const session = require("express-session");
 
 const mainRouter = require("./routes/main");
 const authRouter = require("./routes/auth");
@@ -14,7 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   session({ secret: "notagoodsecret", resave: true, saveUninitialized: true })
 );
-
+app.use(express.static("public"))
 app.use("/", mainRouter);
 app.use("/auth", authRouter);
 
