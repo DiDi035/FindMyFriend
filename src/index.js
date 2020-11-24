@@ -15,7 +15,7 @@ app.use(
   session({ secret: "notagoodsecret", resave: true, saveUninitialized: true })
 );
 app.use(express.static("public"))
-app.use("/", mainRouter);
+app.use("/home", mainRouter);
 app.use("/auth", authRouter);
 
 mongoose

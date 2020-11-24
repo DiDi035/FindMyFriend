@@ -36,7 +36,7 @@
         <div class="col">
           <h1 class="text-center">Sign Up</h1>
           <div class="container-md mx-auto" style="width: 75%">
-            <form action="/submits">
+            <form action="/auth/register" method="POST">
               <div class="input-group mt-4">
                 <div class="input-group-addon">
                   <i class="far fa-address-book" style="margin-top: 0.75em"></i>
@@ -86,7 +86,7 @@
                     id="cust"
                     name="type"
                     class="custom-control-input"
-                    value="option1"
+                    value="customer"
                     checked
                   />
                   <label class="custom-control-label" for="cust"
@@ -99,6 +99,7 @@
                     id="shop"
                     name="type"
                     class="custom-control-input"
+                    value="shop"
                   />
                   <label class="custom-control-label" for="shop"
                     >Pet Store</label

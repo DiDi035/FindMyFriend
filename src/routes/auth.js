@@ -6,14 +6,17 @@ const requireLogin = require("../middleware/RequiredLogin");
 const router = express.Router();
 
 router.get("/login", (req, res) => {
-  res.render("LogIn");
+  res.render("log_in");
 });
+
 router.get("/register", (req, res) => {
-  res.render("SignUp");
+  res.render("sign_up");
 });
 
 router.post("/login", async (req, res) => {
   const { username, password } = req.body;
+  console.log(username);
+  console.log(password);
   const { valid, foundUser } = await User.isAuthenticated(username, password);
   if (valid) {
     req.session.user_id = foundUser._id;
@@ -22,15 +25,19 @@ router.post("/login", async (req, res) => {
     res.redirect("/auth/login");
   }
 });
+
 router.post("/register", async (req, res) => {
-  const { username, password, email } = req.body;
+  const { username, password, email, type } = req.body;
   const user = new User({
     name: username,
     email: email,
     password: password,
+    type: type,
   });
+  await user.save();
   res.redirect("/auth/login");
 });
+
 router.post("/logout", (req, res) => {
   req.session.user_id = null;
   res.redirect("/auth/login");
