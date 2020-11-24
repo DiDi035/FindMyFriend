@@ -10,3 +10,7 @@
 .breadcrumb-item {
     color: #809c70 !important;
 }
+
+.width {
+    width: 15rem;
+}
