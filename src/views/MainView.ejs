@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>FindMyFriend</title>
-    <link rel="icon" href="../public/images/DogAndCat.jpeg" />
+    <link rel="icon" href="/images/DogAndCat.jpeg" />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -17,8 +17,8 @@
     />
 
     <!-- link css files here -->
-    <link rel="stylesheet" href="../public/css/MainView.css" type="text/css" />
-    <link rel="stylesheet" href="../public/css/colors.css" type="text/css" />
+    <link rel="stylesheet" href="/css/MainView.css" type="text/css" />
+    <link rel="stylesheet" href="/css/colors.css" type="text/css" />
     <link
       rel="stylesheet"
       href="../public/css/CommonStyle.css"
@@ -32,6 +32,7 @@
     ></script>
   </head>
   <body>
+    <%- include('HeaderNavBar.ejs') -%>
     <div class="container-fluid Santation font-size-14">
       <div class="row">
         <!-- breadcrumb -->
@@ -39,7 +40,8 @@
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item" aria-label="breadcrumb">
-                <a class="grass" href="../views/MainView.html">Home</a>
+                <!-- might need to change link here -->
+                <a class="grass" href="../views/MainView.ejs">Home</a>
               </li>
               <li class="breadcrumb-item active" aria-current="page">
                 <!-- change breadcrumb here-->
@@ -92,101 +94,6 @@
 
       <div class="row">
         <div class="col-md-3 d-none d-md-block">
-          <!-- Cataloge -->
-          <div class="mx-4 mb-5">
-            <button
-              class="btn btn-block bg-raspberry text-white text-center font-weight-bold font-size-18"
-              type="button"
-              data-toggle="collapse"
-              data-target="#collapseCataloge"
-              aria-expanded="true"
-              aria-controls="collapseCataloge"
-            >
-              Cataloge
-            </button>
-            <div class="collapse show" id="collapseCataloge">
-              <div class="card card-body">
-                <button type="button" class="btn text-left grass btn-block">
-                  All pets
-                </button>
-                <div class="dropdown-divider"></div>
-
-                <div class="btn-group btn-block dropright">
-                  <button
-                    type="button"
-                    class="btn text-left grass"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    <!-- add animal type -->
-                    Dog
-                  </button>
-                  <div class="dropdown-menu">
-                    <!-- add animal breed here -->
-                    <a class="font-size-18 grass m-auto pl-4 dropdown-item"
-                      >Chihuahua</a
-                    >
-                    <div class="dropdown-divider"></div>
-
-                    <a class="font-size-18 grass m-auto pl-4 dropdown-item"
-                      >Husky</a
-                    >
-                    <div class="dropdown-divider"></div>
-
-                    <a class="font-size-18 grass m-auto pl-4 dropdown-item"
-                      >Shiba</a
-                    >
-                    <div class="dropdown-divider"></div>
-
-                    <a class="font-size-18 grass m-auto pl-4 dropdown-item"
-                      >Poodle</a
-                    >
-                    <div class="dropdown-divider"></div>
-
-                    <a class="font-size-18 grass m-auto pl-4 dropdown-item"
-                      >Others</a
-                    >
-                  </div>
-                </div>
-                <div class="dropdown-divider"></div>
-
-                <div class="btn-group btn-block dropright">
-                  <button
-                    type="button"
-                    class="btn text-left grass"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    <!-- add animal type -->
-                    Cat
-                  </button>
-                  <div class="dropdown-menu">
-                    <!-- add animal breed here -->
-                  </div>
-                </div>
-                <div class="dropdown-divider"></div>
-
-                <div class="btn-group btn-block dropright">
-                  <button
-                    type="button"
-                    class="btn text-left grass"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    <!-- add animal type -->
-                    Hamster
-                  </button>
-                  <div class="dropdown-menu">
-                    <!-- add animal breed here -->
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
           <!-- Sort -->
           <ul class="list-group mx-4">
             <li
@@ -213,11 +120,10 @@
         <div class="col-12 col-md-9">
           <div class="row row-cols-1 row-cols-lg-3 m-1">
             <a
-              class="card no-border no-bg col badge badge-light"
-              style="width: 15rem"
+              class="card no-border no-bg col badge badge-light width"
             >
               <img
-                src="../public/images/DogAndCat.jpeg"
+                src="/images/DogAndCat.jpeg"
                 class="card-img-top img-fluid w-100 rounded mx-auto d-block"
                 alt="Responsive image"
               />
@@ -227,11 +133,10 @@
               </div>
             </a>
             <a
-              class="card no-border no-bg col badge badge-light"
-              style="width: 15rem"
+              class="card no-border no-bg col badge badge-light width"
             >
               <img
-                src="../public/images/DogAndCat.jpeg"
+                src="/images/DogAndCat.jpeg"
                 class="card-img-top img-fluid w-100 rounded mx-auto d-block"
                 alt="Responsive image"
               />
@@ -241,55 +146,10 @@
               </div>
             </a>
             <a
-              class="card no-border no-bg col badge badge-light"
-              style="width: 15rem"
+              class="card no-border no-bg col badge badge-light width"
             >
               <img
-                src="../public/images/DogAndCat.jpeg"
-                class="card-img-top img-fluid w-100 rounded mx-auto d-block"
-                alt="Responsive image"
-              />
-              <div class="card-body">
-                <h5 class="card-text text-center font-weight-bolder">Name</h5>
-                <h6 class="card-text text-center">Price</h6>
-              </div>
-            </a>
-          </div>
-          <div class="row row-cols-1 row-cols-lg-3 m-1">
-            <a
-              class="card no-border no-bg col badge badge-light"
-              style="width: 15rem"
-            >
-              <img
-                src="../public/images/DogAndCat.jpeg"
-                class="card-img-top img-fluid w-100 rounded mx-auto d-block"
-                alt="Responsive image"
-              />
-              <div class="card-body">
-                <h5 class="card-text text-center font-weight-bolder">Name</h5>
-                <h6 class="card-text text-center">Price</h6>
-              </div>
-            </a>
-            <a
-              class="card no-border no-bg col badge badge-light"
-              style="width: 15rem"
-            >
-              <img
-                src="../public/images/DogAndCat.jpeg"
-                class="card-img-top img-fluid w-100 rounded mx-auto d-block"
-                alt="Responsive image"
-              />
-              <div class="card-body">
-                <h5 class="card-text text-center font-weight-bolder">Name</h5>
-                <h6 class="card-text text-center">Price</h6>
-              </div>
-            </a>
-            <a
-              class="card no-border no-bg col badge badge-light"
-              style="width: 15rem"
-            >
-              <img
-                src="../public/images/DogAndCat.jpeg"
+                src="/images/DogAndCat.jpeg"
                 class="card-img-top img-fluid w-100 rounded mx-auto d-block"
                 alt="Responsive image"
               />
@@ -301,11 +161,10 @@
           </div>
           <div class="row row-cols-1 row-cols-lg-3 m-1">
             <a
-              class="card no-border no-bg col badge badge-light"
-              style="width: 15rem"
+              class="card no-border no-bg col badge badge-light width"
             >
               <img
-                src="../public/images/DogAndCat.jpeg"
+                src="/images/DogAndCat.jpeg"
                 class="card-img-top img-fluid w-100 rounded mx-auto d-block"
                 alt="Responsive image"
               />
@@ -315,11 +174,10 @@
               </div>
             </a>
             <a
-              class="card no-border no-bg col badge badge-light"
-              style="width: 15rem"
+              class="card no-border no-bg col badge badge-light width"
             >
               <img
-                src="../public/images/DogAndCat.jpeg"
+                src="/images/DogAndCat.jpeg"
                 class="card-img-top img-fluid w-100 rounded mx-auto d-block"
                 alt="Responsive image"
               />
@@ -329,11 +187,51 @@
               </div>
             </a>
             <a
-              class="card no-border no-bg col badge badge-light"
-              style="width: 15rem"
+              class="card no-border no-bg col badge badge-light width"
             >
               <img
-                src="../public/images/DogAndCat.jpeg"
+                src="/images/DogAndCat.jpeg"
+                class="card-img-top img-fluid w-100 rounded mx-auto d-block"
+                alt="Responsive image"
+              />
+              <div class="card-body">
+                <h5 class="card-text text-center font-weight-bolder">Name</h5>
+                <h6 class="card-text text-center">Price</h6>
+              </div>
+            </a>
+          </div>
+          <div class="row row-cols-1 row-cols-lg-3 m-1">
+            <a
+              class="card no-border no-bg col badge badge-light width"
+            >
+              <img
+                src="/images/DogAndCat.jpeg"
+                class="card-img-top img-fluid w-100 rounded mx-auto d-block"
+                alt="Responsive image"
+              />
+              <div class="card-body">
+                <h5 class="card-text text-center font-weight-bolder">Name</h5>
+                <h6 class="card-text text-center">Price</h6>
+              </div>
+            </a>
+            <a
+              class="card no-border no-bg col badge badge-light width"
+            >
+              <img
+                src="/images/DogAndCat.jpeg"
+                class="card-img-top img-fluid w-100 rounded mx-auto d-block"
+                alt="Responsive image"
+              />
+              <div class="card-body">
+                <h5 class="card-text text-center font-weight-bolder">Name</h5>
+                <h6 class="card-text text-center">Price</h6>
+              </div>
+            </a>
+            <a
+              class="card no-border no-bg col badge badge-light width"
+            >
+              <img
+                src="/images/DogAndCat.jpeg"
                 class="card-img-top img-fluid w-100 rounded mx-auto d-block"
                 alt="Responsive image"
               />
@@ -346,6 +244,8 @@
         </div>
       </div>
     </div>
+
+    <%- include('FooterNavBar.ejs') -%>
 
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
