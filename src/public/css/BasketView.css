@@ -1,0 +1,51 @@
+.container-md {
+    border-style: solid;
+    border-color: #BA494B;
+    border-width: 2px;
+    width: 75%;
+}
+.breadcrumb-item + .breadcrumb-item::before {
+    content: ">";
+}
+hr.mt-2 {
+    border-style: solid;
+    border-color: #BA494B;
+    border-width: 1px;
+    background-color: #BA494B;
+    max-width: 95%;
+}
+.basket .itemBaskets {
+    display: block;
+    width: 100%;
+    vertical-align: middle;
+    padding: 1em;
+}
+.basket .itemBaskets .infoWrap {
+    display: table;
+    width: 100%;
+}
+.basket .itemBaskets .itemImageAndName {
+    width: 73%;
+    display: table-cell;
+    vertical-align: middle;
+}
+.basket .itemBaskets .itemImageAndName .rounded {
+    margin-left: 2em;
+    margin-right: 2em;
+    width: 20em;
+    display: inline;
+    padding-right: 1em
+    float = left
+}
+.buttonRemove
+{
+    background-color: white;
+    color: #7F867B;
+    margin-left: 4em;
+    margin-top: 5em;
+}
+.itemCost .costTotal {
+    float: right;
+    margin-left: 2em;
+    margin-right: 2em;
+}
