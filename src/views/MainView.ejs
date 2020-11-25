@@ -19,11 +19,7 @@
     <!-- link css files here -->
     <link rel="stylesheet" href="/css/MainView.css" type="text/css" />
     <link rel="stylesheet" href="/css/colors.css" type="text/css" />
-    <link
-      rel="stylesheet"
-      href="/css/CommonStyle.css"
-      type="text/css"
-    />
+    <link rel="stylesheet" href="/css/CommonStyle.css" type="text/css" />
 
     <!-- font awesome kit code -->
     <script
@@ -33,15 +29,16 @@
   </head>
   <body>
     <%- include('HeaderNavBar.ejs') -%>
-    <div class="container-fluid Santation font-size-14">
+    <br>
+    <div class="container Santation font-size-14">
       <div class="row">
         <!-- breadcrumb -->
-        <div class="col-3 col-md-3">
+        <div class="col-6 col-sm-4">
           <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
+            <ol class="breadcrumb no-bg font-size-18">
               <li class="breadcrumb-item" aria-label="breadcrumb">
                 <!-- might need to change link here -->
-                <a class="grass" href="../views/MainView.ejs">Home</a>
+                <a class="grass" href="/home">Home</a>
               </li>
               <li class="breadcrumb-item active" aria-current="page">
                 <!-- change breadcrumb here-->
@@ -51,77 +48,24 @@
           </nav>
         </div>
 
-        <!-- pages -->
-        <nav aria-label="Page navigation example" class="col-8 col-md-9">
-          <ul class="pagination justify-content-center">
-            <li class="page-item">
-              <a
-                class="page-link grass m-1 border-grass"
-                href="#"
-                aria-label="Previous"
-              >
-                <span aria-hidden="true">&laquo;</span>
-              </a>
-            </li>
-            <li class="page-item">
-              <a class="page-link grass m-1 border-grass" href="#">1</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link grass m-1 border-grass" href="#">2</a>
-            </li>
-            <li class="page-item">
-              <a class="page-link grass m-1 border-grass" href="#">3</a>
-            </li>
-            <li class="page-item">
-              <a
-                class="page-link grass m-1 border-grass"
-                href="#"
-                aria-label="Next"
-              >
-                <span aria-hidden="true">&raquo;</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-
         <!-- sort -->
-        <div class="d-block d-md-none col-1 m-auto">
-          <i
-            class="fas fa-filter raspberry fa-lg border-raspberry p-1 rounded bg-cream"
-          ></i>
+        <div class="col my-auto d-flex justify-content-end">
+          <button class="btn p-2 rounded-pill bg-raspberry text-light m-1 font-size-14">
+            Sort by price
+          </button>
+          <button class="btn p-2 rounded-pill bg-raspberry text-light m-1 font-size-14">
+            Sort by age
+          </button>
         </div>
       </div>
 
       <div class="row">
-        <div class="col-md-3 d-none d-md-block">
-          <!-- Sort -->
-          <ul class="list-group mx-4">
-            <li
-              class="list-group-item bg-raspberry text-white text-center font-weight-bold font-size-18"
-            >
-              Sort
-            </li>
-            <li class="list-group-item">
-              <button type="button" class="btn btn-block text-left grass">
-                By price
-              </button>
-            </li>
-            <li class="list-group-item">
-              <button type="button" class="btn btn-block text-left grass">
-                By age
-              </button>
-            </li>
-          </ul>
-        </div>
-
         <!-- products -->
         <!-- 9 products per page -->
         <!-- change picture, name and price -->
-        <div class="col-12 col-md-9">
+        <div class="col">
           <div class="row row-cols-1 row-cols-lg-3 m-1">
-            <a
-              class="card no-border no-bg col badge badge-light width"
-            >
+            <a class="card no-border no-bg col badge badge-light width p-3">
               <img
                 src="/images/DogAndCat.jpeg"
                 class="card-img-top img-fluid w-100 rounded mx-auto d-block"
@@ -132,9 +76,7 @@
                 <h6 class="card-text text-center">Price</h6>
               </div>
             </a>
-            <a
-              class="card no-border no-bg col badge badge-light width"
-            >
+            <a class="card no-border no-bg col badge badge-light width p-3">
               <img
                 src="/images/DogAndCat.jpeg"
                 class="card-img-top img-fluid w-100 rounded mx-auto d-block"
@@ -145,9 +87,7 @@
                 <h6 class="card-text text-center">Price</h6>
               </div>
             </a>
-            <a
-              class="card no-border no-bg col badge badge-light width"
-            >
+            <a class="card no-border no-bg col badge badge-light width p-3">
               <img
                 src="/images/DogAndCat.jpeg"
                 class="card-img-top img-fluid w-100 rounded mx-auto d-block"
@@ -160,9 +100,7 @@
             </a>
           </div>
           <div class="row row-cols-1 row-cols-lg-3 m-1">
-            <a
-              class="card no-border no-bg col badge badge-light width"
-            >
+            <a class="card no-border no-bg col badge badge-light width p-3">
               <img
                 src="/images/DogAndCat.jpeg"
                 class="card-img-top img-fluid w-100 rounded mx-auto d-block"
@@ -173,9 +111,7 @@
                 <h6 class="card-text text-center">Price</h6>
               </div>
             </a>
-            <a
-              class="card no-border no-bg col badge badge-light width"
-            >
+            <a class="card no-border no-bg col badge badge-light width p-3">
               <img
                 src="/images/DogAndCat.jpeg"
                 class="card-img-top img-fluid w-100 rounded mx-auto d-block"
@@ -186,9 +122,7 @@
                 <h6 class="card-text text-center">Price</h6>
               </div>
             </a>
-            <a
-              class="card no-border no-bg col badge badge-light width"
-            >
+            <a class="card no-border no-bg col badge badge-light width p-3">
               <img
                 src="/images/DogAndCat.jpeg"
                 class="card-img-top img-fluid w-100 rounded mx-auto d-block"
@@ -201,9 +135,7 @@
             </a>
           </div>
           <div class="row row-cols-1 row-cols-lg-3 m-1">
-            <a
-              class="card no-border no-bg col badge badge-light width"
-            >
+            <a class="card no-border no-bg col badge badge-light width p-3">
               <img
                 src="/images/DogAndCat.jpeg"
                 class="card-img-top img-fluid w-100 rounded mx-auto d-block"
@@ -214,9 +146,7 @@
                 <h6 class="card-text text-center">Price</h6>
               </div>
             </a>
-            <a
-              class="card no-border no-bg col badge badge-light width"
-            >
+            <a class="card no-border no-bg col badge badge-light width p-3">
               <img
                 src="/images/DogAndCat.jpeg"
                 class="card-img-top img-fluid w-100 rounded mx-auto d-block"
@@ -227,9 +157,7 @@
                 <h6 class="card-text text-center">Price</h6>
               </div>
             </a>
-            <a
-              class="card no-border no-bg col badge badge-light width"
-            >
+            <a class="card no-border no-bg col badge badge-light width p-3">
               <img
                 src="/images/DogAndCat.jpeg"
                 class="card-img-top img-fluid w-100 rounded mx-auto d-block"
@@ -243,6 +171,41 @@
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <!-- pages -->
+      <nav aria-label="Page navigation example" class="col-8 col-md-9">
+        <ul class="pagination justify-content-center">
+          <li class="page-item">
+            <a
+              class="page-link grass m-1 border-grass"
+              href="#"
+              aria-label="Previous"
+            >
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link grass m-1 border-grass" href="#">1</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link grass m-1 border-grass" href="#">2</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link grass m-1 border-grass" href="#">3</a>
+          </li>
+          <li class="page-item">
+            <a
+              class="page-link grass m-1 border-grass"
+              href="#"
+              aria-label="Next"
+            >
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
 
     <%- include('FooterNavBar.ejs') -%>
