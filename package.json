@@ -17,8 +17,11 @@
   },
   "homepage": "https://github.com/Lisu35/FindMyFriend#readme",
   "dependencies": {
+    "bcrypt": "^5.0.0",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "install": "^0.13.0",
     "method-override": "^3.0.0",
     "mongoose": "^5.10.13",
     "nodemon": "^2.0.6",
