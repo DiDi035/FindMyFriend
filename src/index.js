@@ -5,7 +5,7 @@ const session = require("express-session");
 
 const mainRouter = require("./routes/main");
 const authRouter = require("./routes/auth");
-const petRouter = require("./routes/pets");
+const productRouter = require("./routes/product");
 
 const app = express();
 
@@ -19,7 +19,7 @@ app.use(express.static("public"));
 
 app.use("/home", mainRouter);
 app.use("/auth", authRouter);
-app.use("/pet", petRouter);
+app.use("/product", productRouter);
 
 mongoose
   .connect("mongodb://localhost:27017/FindMyFriend", {
