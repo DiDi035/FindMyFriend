@@ -26,6 +26,12 @@
     border: none;
 }
 
+.bg-image {
+    background-image: url(/images/DogAndCat.jpeg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
 .border-grass {
     border: solid 2px;
     border-color: #809c70;
