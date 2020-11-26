@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 
-const productSchema = new mongoose.Schema({
+const shopSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -46,12 +46,54 @@ const productSchema = new mongoose.Schema({
   image: [{ type: String }],
 });
 
-productSchema.virtual("products", {
+shopSchema.virtual("products", {
   ref: "Products",
   localField: "_id",
   foreignField: "owner",
 });
 
-const Product = mongoose.model("Shop", productSchema);
+shopSchema.statics.isAuthenticated = async function (shopUsername, password) {
+  const foundedShop = await this.findOne({ name: shopUsername });
+  let valid = false;
+  if (foundedShop) {
+    valid = await bcrypt.compare(password, foundedShop.password);
+  }
+  return {
+    valid,
+    foundUser,
+  };
+};
+
+shopSchema.statics.findByCredentials = async (email,password) =>{
+  const shop = await Shop.findOne({email})
+  if (!shop) {
+      throw new Error('Unable to login!')
+  }
+
+  const isMatched= await bcrypt.compare(password,shop.password)
+
+  if (!isMatched){
+      throw new Error('Unable to login')
+  }
+  return shop
+}
+
+shopSchema.methods.toJSON = function(){
+  const shop= this
+  shopObject = shop.toObject()
+  delete shopObject.password
+  delete shopObject.tokens
+  return shopObject
+}
+
+shopSchema.pre('save', async function (next) {
+  const shop = this
+  if (user.isModified('password')) {
+      user.password = await bcrypt.hash(user.password, 8)
+  }
+  next()
+})
+
+const Product = mongoose.model("Shop", shopSchema);
 
 module.exports = Product;
