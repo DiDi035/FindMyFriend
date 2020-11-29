@@ -11,7 +11,7 @@ const shopSchema = new mongoose.Schema({
   },
   contact: {
     type: String,
-    required: true,
+    default: "none",
   },
   email: {
     type: String,
@@ -32,68 +32,50 @@ const shopSchema = new mongoose.Schema({
   address: {
     type: String,
     required: true,
+    default: "none",
   },
   isHide: {
     type: Boolean,
     required: true,
     default: false,
   },
-  isPurchase: {
-    type: Boolean,
-    required: true,
-    default: false,
-  },
-  image: [{ type: String }],
 });
 
 shopSchema.virtual("products", {
-  ref: "Products",
+  ref: "Product",
   localField: "_id",
   foreignField: "owner",
 });
 
-shopSchema.statics.isAuthenticated = async function (shopUsername, password) {
-  const foundedShop = await this.findOne({ name: shopUsername });
-  let valid = false;
-  if (foundedShop) {
-    valid = await bcrypt.compare(password, foundedShop.password);
+shopSchema.statics.isAuthenticated = async (email, password) => {
+  
+  const shop = await Shop.findOne({ email });
+  if (!shop) {
+    throw new Error("Unable to login!");
   }
-  return {
-    valid,
-    foundUser,
-  };
+
+  const isMatched = await bcrypt.compare(password, shop.password);
+  if (!isMatched) {
+    throw new Error("Unable to login");
+  }
+  return shop;
 };
 
-shopSchema.statics.findByCredentials = async (email,password) =>{
-  const shop = await Shop.findOne({email})
-  if (!shop) {
-      throw new Error('Unable to login!')
+shopSchema.methods.toJSON = function () {
+  const shop = this;
+  shopObject = shop.toObject();
+  delete shopObject.password;
+  return shopObject;
+};
+
+shopSchema.pre("save", async function (next) {
+  const shop = this;
+  if (shop.isModified("password")) {
+    shop.password = await bcrypt.hash(shop.password, 12);
   }
+  next();
+});
 
-  const isMatched= await bcrypt.compare(password,shop.password)
+const Shop = mongoose.model("Shop", shopSchema);
 
-  if (!isMatched){
-      throw new Error('Unable to login')
-  }
-  return shop
-}
-
-shopSchema.methods.toJSON = function(){
-  const shop= this
-  shopObject = shop.toObject()
-  delete shopObject.password
-  delete shopObject.tokens
-  return shopObject
-}
-
-shopSchema.pre('save', async function (next) {
-  const shop = this
-  if (user.isModified('password')) {
-      user.password = await bcrypt.hash(user.password, 8)
-  }
-  next()
-})
-
-const Product = mongoose.model("Shop", shopSchema);
-
-module.exports = Product;
+module.exports = Shop;

@@ -8,4 +8,3 @@ const requiredLogIn = (req, res, next) => {
 }
 
 module.exports = requiredLogIn;
-
