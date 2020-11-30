@@ -13,7 +13,6 @@ router.get("/:animal/:breed", requiredLogIn, async (req, res) => {
   const { animal, breed } = req.params;
   const chosenPets = await Product.find({ animal, breed });
   res.render("MainView", { chosenPets });
-  // res.send(animal + " " + breed);
 });
 
 module.exports = router;

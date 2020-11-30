@@ -67,24 +67,24 @@
         <!-- products -->
         <!-- 9 products per page -->
         <!-- change picture, name and price -->
-        <% for (let i = 0; i < chosenPets.length; ++i) { %>
+        <% for (let i = 0; i < allPets.length; ++i) { %>
         <div class="col">
           <div class="row row-cols-1 row-cols-lg-3 m-1">
             <a
-              href="/product/<%= chosenPets[i]._id %>"
+              href="/product/<%= allPets[i]._id %>"
               class="card no-border no-bg col badge badge-light width p-3"
             >
               <img
-                src="data:image/png;base64,<%= chosenPets[i].image.toString('base64') %>"
+                src="data:image/png;base64,<%= allPets[i].image.toString('base64') %>"
                 class="card-img-top img-fluid w-100 rounded mx-auto d-block"
                 alt="Responsive image"
               />
               <div class="card-body">
                 <h5 class="card-text text-center font-weight-bolder">
-                  <%= chosenPets[i].title %>
+                  <%= allPets[i].title %>
                 </h5>
                 <h6 class="card-text text-center">
-                  <%= chosenPets[i].price %>
+                  <%= allPets[i].price %>
                 </h6>
               </div>
             </a>
