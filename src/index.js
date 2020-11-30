@@ -6,6 +6,7 @@ const session = require("express-session");
 const mainRouter = require("./routes/main");
 const authRouter = require("./routes/auth");
 const productRouter = require("./routes/product");
+const shopRouter = require("./routes/shop");
 
 const app = express();
 
@@ -20,11 +21,13 @@ app.use(express.static("public"));
 app.use("/home", mainRouter);
 app.use("/auth", authRouter);
 app.use("/product", productRouter);
+app.use("/shop", shopRouter);
 
 mongoose
   .connect("mongodb://localhost:27017/FindMyFriend", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useCreateIndex:true,
   })
   .then(() => {
     console.log("Mongodb Connected !!!!!");

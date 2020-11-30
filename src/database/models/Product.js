@@ -48,7 +48,13 @@ const productSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: 'Shop',
+    },
+    price: {
+        type: mongoose.Schema.Types.Number,
+        required: true,
+        default: 0
     }
+
 })
 
 const Product = mongoose.model('Product',productSchema);

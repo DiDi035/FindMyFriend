@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
+const bcrypt = require("bcrypt");
 
 const shopSchema = new mongoose.Schema({
   name: {
@@ -39,6 +40,12 @@ const shopSchema = new mongoose.Schema({
     required: true,
     default: false,
   },
+  orders: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Order",
+    },
+  ],
 });
 
 shopSchema.virtual("products", {
@@ -48,7 +55,6 @@ shopSchema.virtual("products", {
 });
 
 shopSchema.statics.isAuthenticated = async (email, password) => {
-  
   const shop = await Shop.findOne({ email });
   if (!shop) {
     throw new Error("Unable to login!");

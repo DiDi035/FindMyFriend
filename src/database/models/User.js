@@ -19,12 +19,14 @@ const userSchema = mongoose.Schema({
     required: true,
     default: "none",
   },
-<<<<<<< HEAD
-  cart :[
-    
-  ]
-=======
->>>>>>> 41ad48bacd757cbd4255ba1b6f9f23e8fff12274
+  cart: [
+    // object products
+    {
+      type: mongoose.SchemaTypes.ObjectId,
+      required: true,
+      ref:"Product"
+    },
+  ],
 });
 
 userSchema.statics.isAuthenticated = async function (username, password) {
