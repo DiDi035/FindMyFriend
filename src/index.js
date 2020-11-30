@@ -5,6 +5,7 @@ const session = require("express-session");
 
 const mainRouter = require("./routes/main");
 const authRouter = require("./routes/auth");
+const productRouter = require("./routes/product");
 
 const app = express();
 
@@ -14,9 +15,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   session({ secret: "notagoodsecret", resave: true, saveUninitialized: true })
 );
-app.use(express.static("public"))
+app.use(express.static("public"));
+
 app.use("/home", mainRouter);
 app.use("/auth", authRouter);
+app.use("/product", productRouter);
 
 mongoose
   .connect("mongodb://localhost:27017/FindMyFriend", {

@@ -15,13 +15,8 @@ const userSchema = mongoose.Schema({
     required: true,
   },
   avatar: {
-    type: String,
-    required: true,
-    default: "none",
-  },
-  type: {
-    type: String,
-    enum: ["customer", "shop", "admin"],
+    type: Buffer,
+    required: false,
   },
 });
 
