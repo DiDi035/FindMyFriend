@@ -15,9 +15,8 @@ const userSchema = mongoose.Schema({
     required: true,
   },
   avatar: {
-    type: String,
-    required: true,
-    default: "none",
+    type: Buffer,
+    required: false,
   },
 });
 

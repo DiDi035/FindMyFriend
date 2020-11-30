@@ -4,11 +4,8 @@ const requiredLogIn = require("../middleware/RequiredLogin");
 const Product = require("../database/models/Product");
 const router = express.Router();
 
-router.get("/", requiredLogIn, (req, res) => {
-  if (!req.session.user_id) {
-    res.redirect("/auth/login");
-  }
-  const allPets = Product.find();
+router.get("/", requiredLogIn, async (req, res) => {
+  const allPets = await Product.find({isHide: false});
   res.render("MainView", { allPets });
 });
 
