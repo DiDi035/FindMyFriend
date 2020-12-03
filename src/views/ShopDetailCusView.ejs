@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FindMyFriend</title>
+    <link rel="icon" href="/images/DogAndCat.jpeg" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" type="text/css" href="gallery.css" />
+    <link
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <!-- link css files here -->
+    <link rel="stylesheet" href="/css/MainView.css" type="text/css" />
+    <link rel="stylesheet" href="/css/colors.css" type="text/css" />
+    <link rel="stylesheet" href="/css/CommonStyle.css" type="text/css" />
+
+    <!-- font awesome kit code -->
+    <script
+      src="https://kit.fontawesome.com/04d7669626.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <%- include('HeaderNavBar.ejs') -%>
+    <br>
+    <div class="container Santation font-size-14">
+      <div class="row">
+        <!-- breadcrumb -->
+        <div class="col-6 col-sm-4">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb no-bg font-size-18">
+              <li class="breadcrumb-item" aria-label="breadcrumb">
+                <!-- might need to change link here -->
+                <a class="grass" href="/home">Home</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                <!-- change breadcrumb here-->
+                Dog
+              </li>
+            </ol>
+          </nav>
+        </div>
+
+        <!-- sort -->
+        <div class="col my-auto d-flex justify-content-end">
+          <button class="btn p-2 rounded-pill bg-raspberry text-light m-1 font-size-14">
+            Sort by price
+          </button>
+          <button class="btn p-2 rounded-pill bg-raspberry text-light m-1 font-size-14">
+            Sort by age
+          </button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-5 col-lg-3">
+            <img class="img-fluid" src="/images/DogAndCat.jpeg" alt="">
+            <div class="container grass p-3">
+                <h4 class="text-center">Shop ABC</h4>
+                Dial: 0123456789
+                <br>
+                Address: ABC street
+            </div>
+        </div>
+        <!-- products -->
+        <!-- 9 products per page -->
+        <!-- change picture, name and price -->
+        <div class="col-7 col-lg-9">
+          <div class="row row-cols-1 row-cols-lg-3 m-1">
+            <a class="card no-border no-bg col badge badge-light width p-3">
+              <img
+                src="/images/DogAndCat.jpeg"
+                class="card-img-top img-fluid w-100 rounded mx-auto d-block"
+                alt="Responsive image"
+              />
+              <div class="card-body">
+                <h5 class="card-text text-center font-weight-bolder">Name</h5>
+                <h6 class="card-text text-center">Price</h6>
+              </div>
+            </a>
+            <a class="card no-border no-bg col badge badge-light width p-3">
+              <img
+                src="/images/DogAndCat.jpeg"
+                class="card-img-top img-fluid w-100 rounded mx-auto d-block"
+                alt="Responsive image"
+              />
+              <div class="card-body">
+                <h5 class="card-text text-center font-weight-bolder">Name</h5>
+                <h6 class="card-text text-center">Price</h6>
+              </div>
+            </a>
+            <a class="card no-border no-bg col badge badge-light width p-3">
+              <img
+                src="/images/DogAndCat.jpeg"
+                class="card-img-top img-fluid w-100 rounded mx-auto d-block"
+                alt="Responsive image"
+              />
+              <div class="card-body">
+                <h5 class="card-text text-center font-weight-bolder">Name</h5>
+                <h6 class="card-text text-center">Price</h6>
+              </div>
+            </a>
+          </div>
+          <div class="row row-cols-1 row-cols-lg-3 m-1">
+            <a class="card no-border no-bg col badge badge-light width p-3">
+              <img
+                src="/images/DogAndCat.jpeg"
+                class="card-img-top img-fluid w-100 rounded mx-auto d-block"
+                alt="Responsive image"
+              />
+              <div class="card-body">
+                <h5 class="card-text text-center font-weight-bolder">Name</h5>
+                <h6 class="card-text text-center">Price</h6>
+              </div>
+            </a>
+            <a class="card no-border no-bg col badge badge-light width p-3">
+              <img
+                src="/images/DogAndCat.jpeg"
+                class="card-img-top img-fluid w-100 rounded mx-auto d-block"
+                alt="Responsive image"
+              />
+              <div class="card-body">
+                <h5 class="card-text text-center font-weight-bolder">Name</h5>
+                <h6 class="card-text text-center">Price</h6>
+              </div>
+            </a>
+            <a class="card no-border no-bg col badge badge-light width p-3">
+              <img
+                src="/images/DogAndCat.jpeg"
+                class="card-img-top img-fluid w-100 rounded mx-auto d-block"
+                alt="Responsive image"
+              />
+              <div class="card-body">
+                <h5 class="card-text text-center font-weight-bolder">Name</h5>
+                <h6 class="card-text text-center">Price</h6>
+              </div>
+            </a>
+          </div>
+          <div class="row row-cols-1 row-cols-lg-3 m-1">
+            <a class="card no-border no-bg col badge badge-light width p-3">
+              <img
+                src="/images/DogAndCat.jpeg"
+                class="card-img-top img-fluid w-100 rounded mx-auto d-block"
+                alt="Responsive image"
+              />
+              <div class="card-body">
+                <h5 class="card-text text-center font-weight-bolder">Name</h5>
+                <h6 class="card-text text-center">Price</h6>
+              </div>
+            </a>
+            <a class="card no-border no-bg col badge badge-light width p-3">
+              <img
+                src="/images/DogAndCat.jpeg"
+                class="card-img-top img-fluid w-100 rounded mx-auto d-block"
+                alt="Responsive image"
+              />
+              <div class="card-body">
+                <h5 class="card-text text-center font-weight-bolder">Name</h5>
+                <h6 class="card-text text-center">Price</h6>
+              </div>
+            </a>
+            <a class="card no-border no-bg col badge badge-light width p-3">
+              <img
+                src="/images/DogAndCat.jpeg"
+                class="card-img-top img-fluid w-100 rounded mx-auto d-block"
+                alt="Responsive image"
+              />
+              <div class="card-body">
+                <h5 class="card-text text-center font-weight-bolder">Name</h5>
+                <h6 class="card-text text-center">Price</h6>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <!-- pages -->
+      <nav aria-label="Page navigation example" class="col-8 col-md-9">
+        <ul class="pagination justify-content-center">
+          <li class="page-item">
+            <a
+              class="page-link grass m-1 border-grass"
+              href="#"
+              aria-label="Previous"
+            >
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link grass m-1 border-grass" href="#">1</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link grass m-1 border-grass" href="#">2</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link grass m-1 border-grass" href="#">3</a>
+          </li>
+          <li class="page-item">
+            <a
+              class="page-link grass m-1 border-grass"
+              href="#"
+              aria-label="Next"
+            >
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <%- include('FooterNavBar.ejs') -%>
+
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
