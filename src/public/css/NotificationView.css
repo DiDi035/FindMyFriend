@@ -1,0 +1,34 @@
+.container-md {
+    border-style: solid;
+    border-color: #BA494B;
+    border-width: 2px;
+    width: 75%;
+}
+.breadcrumb-item + .breadcrumb-item::before {
+    content: ">";
+}
+hr.mt-2 {
+    border-style: solid;
+    border-color: #BA494B;
+    border-width: 1px;
+    background-color: #BA494B;
+    max-width: 95%;
+}
+.img-size{
+    height: 8em;
+    width: 8em;
+}
+.info {
+    padding: 2em 0 0 4em;
+    position: relative;
+}
+.infoMessager .messagerAndRemove {
+    margin-left: 5em;
+}
+.buttonRemove
+{
+    float: right;
+    background-color: white;
+    color: #7F867B;
+    margin-top: 1em;
+}
