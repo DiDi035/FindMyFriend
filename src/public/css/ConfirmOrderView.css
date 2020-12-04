@@ -1,0 +1,38 @@
+div.text-center input {
+    color: white;
+    background-color: #6d1919;
+    padding: .4em .8em;
+    margin: 20px 0px 30px 0px;
+    font-size: 1.3em;
+    border-radius: .4em;
+}
+
+
+/* div.container {
+    max-width: 2500px;
+} */
+
+form {
+    width: 100%;
+}
+
+.Santation {
+    font-family: Santation_Regular;
+}
+
+#col1 {
+    max-width: 1100px;
+    border-radius: 1em;
+}
+
+.breadcrumb-item {
+    color: brown;
+}
+
+div i.attributes {
+    margin-top: 0.7em;
+}
+
+.breadcrumb-item+.breadcrumb-item::before {
+    content: ">";
+}

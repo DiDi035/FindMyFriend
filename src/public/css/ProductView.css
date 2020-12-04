@@ -1,0 +1,25 @@
+.breadcrumb-item+.breadcrumb-item::before {
+    content: ">";
+}
+
+.breadcrumb-item {
+    color: brown;
+}
+
+#images {
+    margin-left: 2em;
+}
+
+#petDetails {
+    width: 90%;
+}
+
+#imgLabel {
+    margin-left: 9rem;
+}
+
+.fas.fa-shopping-cart {
+    color: white;
+    background-color: #6d1919;
+    padding: .7em;
+}
