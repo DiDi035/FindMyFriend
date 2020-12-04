@@ -1,0 +1,59 @@
+.closeButton {
+    float: right ;
+    transform: translate(95%,-21%) ;
+    color: #000;
+    font-size: 30px;
+    text-decoration: none;
+}
+.closeButton::hover {
+    text-decoration: none;
+}
+.modal-content {
+    width: 500px;
+}
+.card {
+    border-style: solid;
+    border-color: #BA494B;
+    border-width: 2px;
+    margin: 2em;
+    margin-top: -0.8em;
+}
+.myModal-hr {
+    transform: translate(8.5%,0%) ;
+    border-style: solid;
+    border-color: #BA494B;
+    border-width: 1px;
+    background-color: #BA494B;
+    max-width: 85%;
+}
+.myModal-body {
+    margin-left: 5em;
+    /* 100% = dialog height, 120px = header + footer */
+    height: 300px;
+}
+.myModal-footer {
+    margin-left: 3.2em;
+    margin-right: 3em;
+    margin-bottom: 2em;
+}
+.sellButton:hover,.rejectButton:hover
+{
+    background-color:  #ba494b;
+}
+.sellButton {
+    font-size: 32px;
+    width: 146px;
+    height: 65px;
+    background: #7F423D;
+    border-radius: 10px;
+    border: none;
+}
+.rejectButton {
+    margin-left: 1em;
+    font-size: 32px;
+    width: 146px;
+    height: 65px;
+    background: #7F423D;
+    border-radius: 10px;
+    border: none;
+}
