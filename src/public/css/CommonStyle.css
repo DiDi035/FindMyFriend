@@ -1,0 +1,63 @@
+.font-size-28 {
+    font-size: 28px;
+}
+
+.font-size-18 {
+    font-size: 18px;
+}
+
+.font-size-14 {
+    font-size: 14px;
+}
+
+.Santation {
+    font-family: Santation_Regular;
+}
+
+.text-decoration-underline {
+    text-decoration: underline;
+}
+
+.no-bg {
+    background: none;
+}
+
+.no-border {
+    border: none;
+}
+
+.bg-image {
+    background-image: url(/images/DogAndCat.jpeg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+.border-grass {
+    border: solid 2px;
+    border-color: #809c70;
+}
+
+.border-raspberry {
+    border: solid 2px;
+    border-color: #6d1919;
+}
+
+/* .border-pink_nude {
+    border: solid 2px;
+    border-color: #7f423d;
+}
+
+.border-red_vine {
+    border: solid 2px;
+    border-color: #ba494b;
+}
+
+.border-soft-kiss {
+    border: solid 2px;
+    border-color: #eadad0;
+}
+
+.border-cream {
+    border: solid 2px;
+    border-color: #efede7;
+} */

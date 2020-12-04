@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>FindMyFriend</title>
-    <link rel="icon" href="/images/DogAndCat.jpeg" />
+    <link rel="icon" href="../public/images/DogAndCat.jpeg" />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -17,9 +17,9 @@
     />
 
     <!-- link css files here -->
-    <link rel="stylesheet" href="/css/HeaderNavBar.css" type="text/css" />
     <link rel="stylesheet" href="/css/colors.css" type="text/css" />
     <link rel="stylesheet" href="/css/CommonStyle.css" type="text/css" />
+    <link rel="stylesheet" href="/css/WelcomePage.css" type="text/css" />
 
     <!-- font awesome kit code -->
     <script
@@ -28,15 +28,36 @@
     ></script>
   </head>
   <body>
-    <!-- your code here -->
-    <div class="bg-raspberry Sansation" style="height: 150px;">
-      <div
-        class="text-decoration-underline text-light font-weight-bold d-flex justify-content-center"
-      >
-        Among us
-      </div>
+    <div class="Santation pink_nude container-fluid font-size-18 transbox h-100 bg-image-welcome">
+        <div class="row pt-3">
+            <div class="col-2"></div>
+            <div class="col-4 text-center">
+                <h1>Welcome to</h1>
+            </div>
+            <div class="col-6"></div>
+            <div class="col-12 font-italic text-center text-center logo">
+                <span class="iconify pink_nude" data-inline="true" data-icon="foundation:paw"></span>
+                    FIND MY FRIEND
+            </div>
+            <div class="col-12 text-center">
+                A place where you can find someone that will always love you no matter what.
+            </div>
+        </div>
+        <div class="row p-custom">
+            <div class="col-6 text-center">
+                <p>If you are a customer, <br> log in here</p>
+                <a class="btn btn-dark btn-change" href="#" role="button">Log in</a>
+            </div>
+            <div class="col-6 text-center">
+                <p>If you are a customer, <br> log in here</p>
+                <a class="btn btn-dark btn-change" href="#" role="button">Log in</a>
+            </div>
+            <a href="#" class="col-12 pink_nude text-center a-custom">Create an account</a>
+        </div>
     </div>
-
+    
+    <%- include('FooterNavBar.ejs') -%>
+    
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -52,5 +73,6 @@
       integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
       crossorigin="anonymous"
     ></script>
+    <script src="https://code.iconify.design/1/1.0.6/iconify.min.js"></script>
   </body>
 </html>
