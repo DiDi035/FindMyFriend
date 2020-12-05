@@ -6,16 +6,20 @@ const requireLogin = require("../middleware/RequiredLogin");
 
 const router = express.Router();
 
+router.get("/welcome", (req, res) => {
+  res.render("WelcomePage");
+});
+
 router.get("/customer/login", (req, res) => {
   res.render("log_in");
 });
 
 router.get("/shop/login", (req, res) => {
-  res.render("log_in");
+  res.render("LogInForShop");
 });
 
 router.get("/register", (req, res) => {
-  res.render("sign_up");
+  res.render("SignUp");
 });
 
 router.post("/customer/login", async (req, res) => {
@@ -63,7 +67,8 @@ router.post("/register", async (req, res) => {
 
 router.post("/logout", (req, res) => {
   req.session.user_id = null;
-  res.redirect("/auth/login");
+  res.send("logout");
+  // res.redirect("/auth//login");
 });
 
 module.exports = router;

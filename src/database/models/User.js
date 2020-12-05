@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
+const Product = require("./Product");
+
 const userSchema = mongoose.Schema({
   name: {
     type: String,
@@ -17,6 +19,9 @@ const userSchema = mongoose.Schema({
   avatar: {
     type: Buffer,
     required: false,
+  },
+  cart: {
+    type: [Product],
   },
 });
 
