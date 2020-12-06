@@ -11,7 +11,8 @@
 }
 
 .Santation {
-    font-family: Santation_Regular;
+    font-family: 'Santation_Regular';
+    src: url(../fonts/Sansation/Sansation_Regular.ttf);
 }
 
 .text-decoration-underline {

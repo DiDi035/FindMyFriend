@@ -23,3 +23,10 @@
     background-color: #6d1919;
     padding: .7em;
 }
+
+.cus-input::placeholder {
+    color: black;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+}
