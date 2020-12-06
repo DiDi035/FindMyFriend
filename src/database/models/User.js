@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
-const Product = require("./Product");
+const { productSchema } = require("./Product");
 
 const userSchema = mongoose.Schema({
   name: {
@@ -21,7 +21,7 @@ const userSchema = mongoose.Schema({
     required: false,
   },
   cart: {
-    type: [Product],
+    type: [productSchema],
   },
 });
 
