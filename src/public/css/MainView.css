@@ -1,3 +1,9 @@
+html, body {
+    height: 100%;
+    padding: 0px;
+    margin: 0px;
+}
+
 .breadcrumb-item+.breadcrumb-item::before {
     content: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPjxwYXRoIGQ9Ik0yLjUgMEwxIDEuNSAzLjUgNCAxIDYuNSAyLjUgOGw0LTQtNC00eiIgZmlsbD0iY3VycmVudENvbG9yIi8+PC9zdmc+);
 }
@@ -14,3 +20,18 @@
 .width {
     width: 15rem;
 }
+
+.btn-change {
+    background-color: #6d1919;
+    border: 0px;
+    font-size: 18px;
+    box-shadow: 0 0 1px #ccc;
+    animation-timing-function: linear;
+    transition-duration: 0.5s;
+    box-shadow: 0px 0 0 #eadad0 inset;
+  }
+  
+  .btn-change:hover {
+    box-shadow: 180px 0 0 #eadad0 inset;
+    color: #6d1919;
+  }

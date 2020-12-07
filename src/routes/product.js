@@ -5,10 +5,9 @@ const Product = require("../database/models/Product");
 const { options } = require("./auth");
 const router = express.Router();
 
-router.get("/",requiredLogIn, async (req, res) => {
+router.get("/:proId", async (req, res) => {
   const { proId } = req.params;
-  
-  // const chosenPet = await Product.findById(petId);
+  // const chosenPet = await Product.findById(proId);
   res.render("product_view");
 });
 

@@ -6,16 +6,20 @@ const requireLogin = require("../middleware/RequiredLogin");
 
 const router = express.Router();
 
+router.get("/welcome", (req, res) => {
+  res.render("WelcomePage");
+});
+
 router.get("/customer/login", (req, res) => {
   res.render("log_in");
 });
 
 router.get("/shop/login", (req, res) => {
-  res.render("log_in");
+  res.render("LogInForShop");
 });
 
 router.get("/register", (req, res) => {
-  res.render("sign_up");
+  res.render("SignUp");
 });
 
 router.post("/customer/login", async (req, res) => {
@@ -23,7 +27,6 @@ router.post("/customer/login", async (req, res) => {
   const { valid, foundUser } = await User.isAuthenticated(username, password);
   if (valid) {
     req.session.user_id = foundUser._id;
-    req.session.type = "customer";
     res.redirect("/home");
   } else {
     res.redirect("/auth/customer/login");
@@ -73,7 +76,8 @@ router.post("/register", async (req, res) => {
 
 router.post("/logout", (req, res) => {
   req.session.user_id = null;
-  res.redirect("/auth/customer/login");
+  res.send("logout");
+  // res.redirect("/auth//login");
 });
 
 module.exports = router;

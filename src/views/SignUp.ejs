@@ -11,22 +11,24 @@
       integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
       crossorigin="anonymous"
     />
-    <script
-      src="https://kit.fontawesome.com/4327c3ebe1.js"
-      crossorigin="anonymous"
-    ></script>
-    <link rel="stylesheet" href="colors.css" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../public/css/colors.css"/>
+    <link
+      rel="stylesheet"
+      href="../public/css/CommonStyle.css"
+      type="text/css"
+    />
+    <link rel="stylesheet" href="../public/css/SignUp.css" />
   </head>
-  <body style="background-color: #a04941">
+
+  <body>
     <div
-      class="container-md my-5 shadow p-3 mb-5 bg-white rounded-lg"
-      style="max-width: 700px"
+      class="container-md Santation my-5 shadow p-3 mb-5 bg-white rounded-lg"
+      id="main"
     >
       <div class="row mt-3 mb-1">
         <div class="col my-auto d-none d-sm-block">
           <img
-            src="\images\DogAndCat.jpeg"
+            src="../public/images/DogAndCat.jpeg"
             alt=""
             class="rounded fit-fluid"
             width="100%"
@@ -35,11 +37,11 @@
         </div>
         <div class="col">
           <h1 class="text-center">Sign Up</h1>
-          <div class="container-md mx-auto" style="width: 75%">
+          <div class="container-md mx-auto">
             <form action="/auth/register" method="POST">
               <div class="input-group mt-4">
                 <div class="input-group-addon">
-                  <i class="far fa-address-book" style="margin-top: 0.75em"></i>
+                  <i class="far fa-address-book" id="icon"></i>
                 </div>
                 <input
                   class="form-control border-0"
@@ -52,7 +54,7 @@
               <hr class="mt-0" />
               <div class="input-group mt-0">
                 <div class="input-group-addon">
-                  <i class="fa fa-envelope-o" style="margin-top: 0.75em"></i>
+                  <i class="fa fa-envelope-o" id="icon"></i>
                 </div>
                 <input
                   class="form-control border-0"
@@ -65,7 +67,7 @@
               <hr class="mt-0" />
               <div class="input-group mt-0">
                 <div class="input-group-addon">
-                  <i class="fas fa-key" style="margin-top: 0.75em"></i>
+                  <i class="fas fa-key" id="icon"></i>
                 </div>
                 <input
                   class="form-control border-0"
@@ -77,62 +79,43 @@
               </div>
               <hr class="mt-0" />
 
-              <div style="margin-left: 10%">
+              <div id="type">
                 <div class="mb-2">Signing up as:</div>
-
-                <div class="custom-control custom-radio mb-1">
+                <div class="form-check mb-1">
                   <input
                     type="radio"
                     id="cust"
                     name="type"
-                    class="custom-control-input"
+                    class="form-check-input"
                     value="customer"
                     checked
                   />
-                  <label class="custom-control-label" for="cust"
-                    >Customer</label
-                  >
+                  <label class="form-check-label" for="cust">Customer</label>
                 </div>
-                <div class="custom-control custom-radio">
+                <div class="form-check">
                   <input
                     type="radio"
                     id="shop"
                     name="type"
-                    class="custom-control-input"
+                    class="form-check-input"
                     value="shop"
                   />
-                  <label class="custom-control-label" for="shop"
-                    >Pet Store</label
-                  >
+                  <label class="form-check-label" for="shop">Pet Store</label>
                 </div>
-                <div class="text-center">
-                  <button
-                    type="submit"
-                    class="btn btn-lg active mt-5 mb-5"
-                    style="
-                      color: white;
-                      background-color: #6d1919;
-                      padding: 0.4em 1em 0.4em 1em;
-                    "
-                    role="button"
-                  >
-                    Sign Up
-                  </button>
-                </div>
+              </div>
+              <div class="text-center">
+                <input type="submit" id="submit" value="Sign Up" />
               </div>
             </form>
           </div>
         </div>
       </div>
     </div>
+
+    <%- include('FooterNavBar.ejs') -%>
+
     <script
-      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-      crossorigin="anonymous"
-    ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+      src="https://kit.fontawesome.com/04d7669626.js"
       crossorigin="anonymous"
     ></script>
   </body>

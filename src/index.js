@@ -31,7 +31,11 @@ mongoose
   .connect("mongodb://localhost:27017/FindMyFriend", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+<<<<<<< HEAD
     useCreateIndex:true,
+=======
+    
+>>>>>>> b58308cad28c0b80d161c1a5f516cb3f4444f5d3
   })
   .then(() => {
     console.log("Mongodb Connected !!!!!");
