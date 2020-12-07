@@ -6,7 +6,7 @@ body {
 }
 
 .bg-image-welcome {
-  background-image: url(/images/DogAndCat.jpeg);
+  background-image: url(/images/WelcomeImage.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -18,17 +18,13 @@ body {
   opacity: 80%;
 }
 
-.p-custom {
-  padding-top: 380px;
-}
-
 .logo {
   font-weight: 600;
   font-size: 50px;
 }
 
 .btn-dark {
-  background-color: #6d1919;
+  background-color: #6d1919 !important;
 }
 
 .a-custom:hover {
@@ -48,6 +44,6 @@ body {
 }
 
 .btn-change:hover {
-  box-shadow: 100px 0 0 #eadad0 inset;
-  color: #6d1919;
+  box-shadow: 180px 0 0 #eadad0 inset;
+  color: #6d1919 !important;
 }
