@@ -10,9 +10,13 @@
     font-size: 14px;
 }
 
+@font-face {
+    font-family: 'Santation_Regular';
+    src: url(../fonts/Sansation/Sansation_Regular.ttf) format('truetype');
+}
+
 .Santation {
     font-family: 'Santation_Regular';
-    src: url(../fonts/Sansation/Sansation_Regular.ttf);
 }
 
 .text-decoration-underline {
