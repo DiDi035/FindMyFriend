@@ -7,6 +7,7 @@ const mainRouter = require("./routes/main");
 const authRouter = require("./routes/auth");
 const productRouter = require("./routes/product");
 const shopRouter = require("./routes/shop");
+const path = require('path')
 
 const app = express();
 
@@ -16,7 +17,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(
   session({ secret: "notagoodsecret", resave: true, saveUninitialized: true })
 );
-app.use(express.static("public"));
+
+app.set('views', `${__dirname}/views`);
+app.use(express.static(`${__dirname}/public`));
+
 
 app.use("/home", mainRouter);
 app.use("/auth", authRouter);

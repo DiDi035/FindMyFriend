@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt");
 const shopSchema = new mongoose.Schema({
   name: {
     type: String,
+    unique: true,
     required: true,
   },
   avatar: {
@@ -54,16 +55,21 @@ shopSchema.virtual("products", {
   foreignField: "owner",
 });
 
-shopSchema.statics.isAuthenticated = async (email, password) => {
-  const shop = await Shop.findOne({ email });
+shopSchema.statics.isAuthenticated = async function (email, password) {
+  console.log(email);
+  const shop = await this.findOne({ email: email });
   if (!shop) {
+    console.log("email not found");
     throw new Error("Unable to login!");
+
   }
 
   const isMatched = await bcrypt.compare(password, shop.password);
   if (!isMatched) {
+    console.log("incorrect password");
     throw new Error("Unable to login");
   }
+  console.log(shop);
   return shop;
 };
 
