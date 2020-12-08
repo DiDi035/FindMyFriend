@@ -37,7 +37,7 @@ mongoose
 
 app.set("view engine", "ejs");
 
-const PORT = 8000;
+const PORT = 3000;
 app.listen(PORT, () => {
   console.log("Listening to port " + PORT);
 });
