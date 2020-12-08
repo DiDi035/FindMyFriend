@@ -10,3 +10,7 @@ html {
 .rounded-20 {
     border-radius: 30px;
 }
+
+.btn-dark {
+    background-color: #6d1919 !important;
+}
