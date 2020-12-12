@@ -27,7 +27,7 @@ router.post("/customer/login", async (req, res) => {
   const { valid, foundUser } = await User.isAuthenticated(username, password);
   if (valid) {
     req.session.user_id = foundUser._id;
-    res.redirect("/home");
+    res.redirect("/home/customer/1");
   } else {
     res.redirect("/auth/customer/login");
   }
@@ -38,7 +38,7 @@ router.post("/shop/login", async (req, res) => {
   const { valid, foundUser } = await Shop.isAuthenticated(username, password);
   if (valid) {
     req.session.user_id = foundUser._id;
-    res.redirect("/home");
+    res.redirect("/home/1");
   } else {
     res.redirect("/auth/shop/login");
   }
@@ -47,11 +47,11 @@ router.post("/shop/login", async (req, res) => {
 router.post("/register", async (req, res) => {
   const { username, password, email, type } = req.body;
   if (type == "customer") {
-    // const user = new User({
-    //   name: username,
-    //   email: email,
-    //   password: password,
-    // });
+    const user = new User({
+      name: username,
+      email: email,
+      password: password,
+    });
     await user.save();
   } else if (type == "shop") {
     // const shop = new Shop({

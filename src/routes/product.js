@@ -7,7 +7,10 @@ const router = express.Router();
 router.get("/:proId", requiredLogIn, async (req, res) => {
   const { proId } = req.params;
   // const chosenPet = await Product.findById(proId);
-  res.render("ProductView", { curUserId: req.session.user_id });
+  res.render("ProductView", {
+    curUserId: req.session.user_id,
+    curUserType: req.session.user_type,
+  });
 });
 
 module.exports = router;

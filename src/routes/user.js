@@ -21,7 +21,7 @@ router.get("/:userId/cart", requiredLogIn, async (req, res) => {
       price: 100000,
     },
   ];
-  res.render("BasketView", { chosenUserCart, curUserId: req.session.user_id });
+  res.render("BasketView", { chosenUserCart, chosenUser });
 });
 
 module.exports = router;
