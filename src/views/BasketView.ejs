@@ -12,6 +12,7 @@
   </head>
 
   <body>
+    <%- include('HeaderNavBar.ejs', {curUserId}) -%>
     <nav aria-label="breadcrumb">
       <ol class="breadcrumb bg-white">
         <li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -33,57 +34,27 @@
       <div class="col">
         <div class="basket">
           <ul class="basketWrap">
+            <% for (let i = 0; i < chosenUserCart.length; ++i) { %>
             <li class="itemBaskets">
               <div class="infoWrap">
                 <div class="itemImageAndName">
                   <img
-                    src="../public/images/DogAndCat.jpeg"
+                    src="/images/DogAndCat.jpeg"
                     class="rounded float-left d-none d-sm-none d-md-none d-lg-block"
                   />
-                  <h4 style="color: #7f867b">Cutest Puppy</h4>
+                  <h4 style="color: #7f867b"><%= chosenUserCart[i].title %></h4>
                 </div>
                 <div class="itemCostAndRemove">
-                  <h4 style="color: #7f867b">3.000.000đ</h4>
+                  <h4 style="color: #7f867b">
+                    <%= chosenUserCart[i].price %> VND
+                  </h4>
                   <button class="buttonRemove border-0 btn-lg">
                     <i class="fa fa-trash" style="color: #7f867b"></i>
                   </button>
                 </div>
               </div>
             </li>
-            <li class="itemBaskets">
-              <div class="infoWrap">
-                <div class="itemImageAndName">
-                  <img
-                    src="../public/images/DogAndCat.jpeg"
-                    class="rounded float-left d-none d-sm-none d-md-none d-lg-block"
-                  />
-                  <h4 style="color: #7f867b">Cutest Puppy</h4>
-                </div>
-                <div class="itemCostAndRemove">
-                  <h4 style="color: #7f867b">3.000.000đ</h4>
-                  <button class="buttonRemove border-0 btn-lg">
-                    <i class="fa fa-trash" style="color: #7f867b"></i>
-                  </button>
-                </div>
-              </div>
-            </li>
-            <li class="itemBaskets">
-              <div class="infoWrap">
-                <div class="itemImageAndName">
-                  <img
-                    src="../public/images/DogAndCat.jpeg"
-                    class="rounded float-left d-none d-sm-none d-md-none d-lg-block"
-                  />
-                  <h4 style="color: #7f867b">Cutest Puppy</h4>
-                </div>
-                <div class="itemCostAndRemove">
-                  <h4 style="color: #7f867b">3.000.000đ</h4>
-                  <button class="buttonRemove border-0 btn-lg">
-                    <i class="fa fa-trash" style="color: #7f867b"></i>
-                  </button>
-                </div>
-              </div>
-            </li>
+            <% } %>
           </ul>
         </div>
       </div>
@@ -92,7 +63,8 @@
     <div class="row">
       <div class="col text-right">
         <div class="itemCost">
-          <h3 class="costTotal">12.000.000đ</h3>
+          <% let sum = chosenUserCart.reduce((a, b) => a.price + b.price) %>
+          <h3 class="costTotal"><% sum %> VND</h3>
           <h3 class="total">Total</h3>
         </div>
         <a
@@ -105,7 +77,7 @@
         >
       </div>
     </div>
-
+    <%- include('FooterNavBar.ejs') -%>
     <script
       src="https://kit.fontawesome.com/4327c3ebe1.js"
       crossorigin="anonymous"

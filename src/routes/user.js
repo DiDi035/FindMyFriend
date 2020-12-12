@@ -5,16 +5,23 @@ const router = express.Router();
 
 const User = require("../database/models/User");
 
-router.get("/user/:userId/profile", requiredLogIn, (req, res) => {
+router.get("/:userId/profile", requiredLogIn, async (req, res) => {
   const { userId } = req.params;
-  const chosenUser = User.findById(userId);
+  const chosenUser = await User.findById(userId);
   res.render("ProfileView", { chosenUser });
 });
 
-router.get("/user/:userId/cart", requiredLogIn, (req, res) => {
+router.get("/:userId/cart", requiredLogIn, async (req, res) => {
   const { userId } = req.params;
-  const chosenUser = User.findById(userId);
-  res.render("BasketView", { userId });
+  const chosenUser = await User.findById(userId);
+  // const chosenUserCart = chosenUser.cart.slice();
+  const chosenUserCart = [
+    {
+      title: " Nhi Chihuahua",
+      price: 100000,
+    },
+  ];
+  res.render("BasketView", { chosenUserCart, curUserId: req.session.user_id });
 });
 
 module.exports = router;
