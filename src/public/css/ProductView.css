@@ -1,10 +1,10 @@
-.breadcrumb-item+.breadcrumb-item::before {
+/* .breadcrumb-item+.breadcrumb-item::before {
     content: ">";
 }
 
 .breadcrumb-item {
     color: brown;
-}
+} */
 
 #images {
     margin-left: 2em;
@@ -18,10 +18,8 @@
     margin-left: 9rem;
 }
 
-.fas.fa-shopping-cart {
-    color: white;
-    background-color: #6d1919;
-    padding: .7em;
+.btn-dark {
+    background-color: #6d1919 !important;
 }
 
 .cus-input::placeholder {

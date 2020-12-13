@@ -37,6 +37,20 @@
     background-size: 100% 100%;
 }
 
+.breadcrumb-item+.breadcrumb-item::before {
+    content: ">" !important;
+    color: #809c70 !important;
+}
+
+.breadcrumb {
+    background: none !important;
+    margin: auto;
+}
+
+.breadcrumb-item {
+    color: #809c70 !important;
+}
+
 .border-grass {
     border: solid 2px;
     border-color: #809c70;

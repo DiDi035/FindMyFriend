@@ -8,7 +8,7 @@ const router = express.Router();
 router.get("/:proId", async (req, res) => {
   const { proId } = req.params;
   // const chosenPet = await Product.findById(proId);
-  res.render("product_view");
+  res.render("ProductView");
 });
 
 module.exports = router;
