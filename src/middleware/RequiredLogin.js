@@ -1,4 +1,6 @@
 const express = require("express");
+const User= require("../database/models/User")
+const Shop= require("../database/models/Shop")
 
 const requiredLogIn = (req, res, next) => {
   if (!req.session.user_id) {
@@ -7,8 +9,18 @@ const requiredLogIn = (req, res, next) => {
   next();
 };
 
-<<<<<<< HEAD
-module.exports = requiredLogIn;
-=======
-module.exports = requiredLogIn;
->>>>>>> b58308cad28c0b80d161c1a5f516cb3f4444f5d3
+const shopRequiredLogIn = async(req,res,next)=>{
+  try{
+    if (!req.session.user_id) {
+        throw new Error()
+    }
+    _id = req.session.user_id
+    const shop= await Shop.findById(_id)
+    req.shop = shop
+    next()
+} catch(e){
+  return res.redirect("/auth/welcome");
+}
+}
+
+module.exports = {requiredLogIn,shopRequiredLogIn};

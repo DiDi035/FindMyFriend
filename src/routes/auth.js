@@ -34,14 +34,12 @@ router.post("/customer/login", async (req, res) => {
 });
 
 router.post("/shop/login", async (req, res) => {
-  const { email, password } = req.body;
-  const shop = await Shop.isAuthenticated(email, password);
-  console.log(shop);
+  const { username, password } = req.body;
+  const shop = await Shop.isAuthenticated(username, password);
   if (!shop) {
     res.redirect("/auth/shop/login");
   } else {
     req.session.user_id = shop._id;
-    req.session.type = "shop";
     res.redirect("/home");
   }
 });
@@ -58,6 +56,7 @@ router.post("/register", async (req, res) => {
       });
       await user.save();
       res.redirect("/auth/customer/login");
+
     } else if (type == "shop") {
       console.log("vodayr");
       const shop = new Shop({
@@ -67,9 +66,9 @@ router.post("/register", async (req, res) => {
       });
       await shop.save();
       res.redirect("/auth/shop/login");
+
     }
   } catch (e) {
-
     res.redirect("/auth/register")
   }
 });

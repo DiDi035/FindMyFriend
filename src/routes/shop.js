@@ -1,8 +1,11 @@
 const Shop = require("../database/models/Shop");
-const requireLogin = require("../middleware/RequiredLogin");
 
 const express = require("express");
 const Product = require("../database/models/Product");
+const {
+  requireLogin,
+  shopRequiredLogIn,
+} = require("../middleware/RequiredLogin");
 
 const router = new express.Router();
 
@@ -33,7 +36,7 @@ router.get("/:shopName", async (req, res) => {
           limit,
           skip,
           sort,
-        },    
+        },
       })
       .execPopulate();
 
@@ -44,21 +47,20 @@ router.get("/:shopName", async (req, res) => {
 });
 
 //add products
-router.post("/:shopName/addProduct",requireLogin, async (req, res) => {
+router.post("/addProduct", shopRequiredLogIn, async (req, res) => {
   const product = new Product({
     ...req.body,
-    owner: req.session.user_id
-  })
-  try{
-    await product.save()
-    res.status(201).send()
-  }catch(e){
-    res.status(500).send(e)
+    owner: req.shop._id,
+  });
+  console.log(product);
+  try {
+    await product.save();
+    res.status(201).send();
+  } catch (e) {
+    res.status(400).send(e);
   }
 });
 
-router.get("/:shopName/",async(req,res)=>{
-  
-})
+router.get("/:shopName/", async (req, res) => {});
 
 module.exports = router;

@@ -20,17 +20,13 @@ const userSchema = mongoose.Schema({
     type: Buffer,
     required: false,
   },
-  cart: {
-    type: [productSchema],
-  },
   cart: [
-    // object products
     {
       type: mongoose.SchemaTypes.ObjectId,
       required: true,
       ref:"Product"
     },
-  ],
+  ],  
 });
 
 userSchema.statics.isAuthenticated = async function (username, password) {

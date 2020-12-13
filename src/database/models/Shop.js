@@ -5,7 +5,6 @@ const bcrypt = require("bcrypt");
 const shopSchema = new mongoose.Schema({
   name: {
     type: String,
-    unique: true,
     required: true,
   },
   avatar: {
@@ -17,7 +16,6 @@ const shopSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    unique: true,
     required: true,
     trim: true,
     lowercase: true,
@@ -55,21 +53,18 @@ shopSchema.virtual("products", {
   foreignField: "owner",
 });
 
-shopSchema.statics.isAuthenticated = async function (email, password) {
-  console.log(email);
-  const shop = await this.findOne({ email: email });
+shopSchema.statics.isAuthenticated = async function (username, password) {
+  const shop = await this.findOne({ email: username });
   if (!shop) {
     console.log("email not found");
-    throw new Error("Unable to login!");
-
+    return new Error("Unable to login!");
   }
 
   const isMatched = await bcrypt.compare(password, shop.password);
   if (!isMatched) {
     console.log("incorrect password");
-    throw new Error("Unable to login");
+    return new Error("Unable to login");
   }
-  console.log(shop);
   return shop;
 };
 
@@ -90,4 +85,7 @@ shopSchema.pre("save", async function (next) {
 
 const Shop = mongoose.model("Shop", shopSchema);
 
+Shop.collection.createIndex({name: 1},{unique:true})
+Shop.collection.createIndex({email: 1},{unique:true})
+Shop.collection.createIndex({contact: 1},{unique:true})
 module.exports = Shop;
