@@ -22,7 +22,7 @@
 </head>
 
 <body>
-    <%- include('HeaderNavBar.ejs', {curUserId}) -%>
+    <%- include('HeaderNavBar.ejs', {curUser, curUserType}) -%>
         <div class="container-md Santation">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb bg-white py-0">
@@ -34,7 +34,7 @@
                 <div class="row">
                     <div class="small-12 medium-2 large-2 columns">
                         <div class="circle">
-                            <img class="profile-pic" src="../public/images/2.jpg">
+                            <img class="profile-pic" src="/images/2.jpg">
                         </div>
                         <div class="p-image">
                             <i class="fa fa-edit upload-button"></i>
@@ -43,40 +43,40 @@
                     </div>
                 </div>
                 <div class="container-md mx-auto">
-                    <form action="https://www.google.com">
+                    <form action="/user/<%= curUser._id %>/profile?_method=PUT" method="POST">
                         <div class="input-group mt-4">
                             <div class="input-group-addon">
                                 <i class="far fa-address-book attributes"></i>
                             </div>
-                            <input class="form-control border-0" id="username" name="username" type="text" placeholder="Your Name" />
+                            <input class="form-control border-0" value="<%= curUser.name %>" id="username" name="username" type="text" placeholder="Your Name" />
                         </div>
                         <hr class="mt-0" />
                         <div class="input-group mt-0">
                             <div class="input-group-addon">
                                 <i class="fa fa-envelope-o attributes"></i>
                             </div>
-                            <input class="form-control border-0" id="email" name="email" type="email" placeholder="Email" />
+                            <input class="form-control border-0" value="<%= curUser.email %>" id="email" name="email" type="email" placeholder="Email" />
                         </div>
                         <hr class="mt-0" />
                         <div class="input-group mt-0">
                             <div class="input-group-addon">
                                 <i class="fas fa-key attributes"></i>
                             </div>
-                            <input class="form-control border-0" id="password" name="password" type="password" placeholder="New Password" />
+                            <input class="form-control border-0" value="<%= curUser.password %>" id="password" name="password" type="password" placeholder="New Password" />
                         </div>
                         <hr class="mt-0" />
                         <div class="input-group mt-0">
                             <div class="input-group-addon">
                                 <i class="fas fa-home attributes"></i>
                             </div>
-                            <input class="form-control border-0" id="address" name="address" type="text" placeholder="Address" />
+                            <input class="form-control border-0" value="<%= curUser.adress %>" id="address" name="address" type="text" placeholder="Address" />
                         </div>
                         <hr class="mt-0" />
                         <div class="input-group mt-0">
                             <div class="input-group-addon">
                                 <i class="fas fa-phone-alt attributes"></i>
                             </div>
-                            <input class="form-control border-0" id="tel" name="tel" type="tel" placeholder="Phone Number" />
+                            <input class="form-control border-0" value="<%= curUser.phone %>" id="tel" name="tel" type="tel" placeholder="Phone Number" />
                         </div>
                         <hr class="mt-0" />
                         <div class="text-center"><input type="submit" value="Update Profile">

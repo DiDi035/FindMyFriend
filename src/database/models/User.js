@@ -18,7 +18,12 @@ const userSchema = mongoose.Schema({
   },
   avatar: {
     type: Buffer,
-    required: false,
+  },
+  address: {
+    type: String,
+  },
+  phone: {
+    type: String,
   },
   cart: {
     type: [productSchema],
