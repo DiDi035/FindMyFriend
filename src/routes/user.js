@@ -1,4 +1,5 @@
 const express = require("express");
+const bcrypt = require("bcrypt");
 
 const requiredLogIn = require("../middleware/RequiredLogin");
 const router = express.Router();
@@ -29,7 +30,7 @@ router.put("/:userId/profile", async (req, res) => {
   const { userId } = req.params;
   await User.findByIdAndUpdate(userId, {
     name: username,
-    password: password,
+    password: await bcrypt.hash(password, 12),
     email: email,
     address: address,
     phone: tel,
