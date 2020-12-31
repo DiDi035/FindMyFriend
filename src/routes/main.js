@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get("/", requiredLogIn, async (req, res) => {
   const allPets = await Product.find({ isHide: false });
-  res.render("MainView", { allPets });
+  res.render("MainView", { allPets, });
 });
 
 router.get("/:animal/:breed", requiredLogIn, async (req, res) => {

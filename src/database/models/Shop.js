@@ -85,7 +85,7 @@ shopSchema.pre("save", async function (next) {
 
 const Shop = mongoose.model("Shop", shopSchema);
 
-Shop.collection.createIndex({name: 1},{unique:true})
-Shop.collection.createIndex({email: 1},{unique:true})
-Shop.collection.createIndex({contact: 1},{unique:true})
+Shop.collection.createIndex({ name: 1 }, { unique: true });
+Shop.collection.createIndex({ email: 1 }, { unique: true });
+Shop.collection.createIndex({ contact: 1 }, { unique: true });
 module.exports = Shop;

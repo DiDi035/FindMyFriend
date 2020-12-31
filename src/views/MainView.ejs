@@ -50,13 +50,14 @@
         <!-- change picture, name and price -->
         <% for (let i = 0; i < allPets.length; ++i) { %>
         <div class="col">
-          <div class="row row-cols-1 row-cols-lg-3 m-1">
+          <div class="">
             <a
               href="/product/<%= allPets[i]._id %>"
-              class="card no-border no-bg col badge badge-light width p-3"
+              class="card no-border no-bg col badge badge-light width"
             >
+              
               <img
-                src="#"
+                src="data:image/jpeg;base64,<%= new Buffer(allPets[i].images[1]).toString('base64')%>"
                 class="card-img-top img-fluid w-100 rounded mx-auto d-block"
                 alt="Responsive image"
               />

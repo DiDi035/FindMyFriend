@@ -46,6 +46,12 @@ const productSchema = new mongoose.Schema({
     required: true,
     default: 0,
   },
+  images: [
+    {
+      type: Buffer
+    },
+  ],
+
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Shop",
