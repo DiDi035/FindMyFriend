@@ -18,7 +18,7 @@
         <i class="fas fa-paw fa-3x p-2"></i>
         <a
           class="navbar-brand search-w font-weight-bold font-size-28 my-auto"
-          href="/home"
+          href="/home/<%= curUserType %>/1"
           >Find My Friend</a
         >
 
@@ -54,7 +54,7 @@
         <div class="collapse navbar-collapse" id="navbarCategories">
           <ul class="navbar-nav ml-4">
             <li class="nav-item dropdown">
-              <a class="nav-link" href="">
+              <a class="nav-link" href="/home/customer/1">
                 <div class="font-size-18 raspberry font-weight-bolder">All</div>
               </a>
             </li>
@@ -78,7 +78,7 @@
                 <!-- add animal breed here -->
                 <a
                   class="font-size-18 grass m-auto pl-4 dropdown-item"
-                  href="/home/Dog/Chihuahua"
+                  href="/home/<%= curUserType %>/Chihuahua/1"
                   >Chihuahua</a
                 >
                 <div class="dropdown-divider"></div>
@@ -246,7 +246,7 @@
 
               <div class="dropdown-menu" aria-labelledby="navbarDropdownAva">
                 <!-- case 1: user hasn't log in -->
-                <div class="">
+                <div class="d-none">
                   <div class="row">
                     <div class="col-4 rounded-circle">
                       <i
@@ -266,7 +266,7 @@
                 </div>
 
                 <!-- case 2: CUSTOMER has already log in -->
-                <div class="">
+                <div class="<%- curUserType == "customer" ? "" : "d-none" %>">
                   <div class="row">
                     <div class="col-4 rounded-circle">
                       <!-- change to user image -->
@@ -279,12 +279,12 @@
                         class="row font-size-18 mx-3 text-dark font-weight-bolder"
                       >
                         <!-- change user name here -->
-                        Cus name
+                        <%= curUser.name %> 
                       </div>
                       <div
                         class="row font-weight-lighter font-size-14 mx-2 text-decoration-underline"
                       >
-                        <a class="text-black-50" href="#">See your profile</a>
+                        <a class="text-black-50" href="/user/<%= curUser._id %>/profile">See your profile</a>
                       </div>
                     </div>
                   </div>
@@ -304,7 +304,7 @@
                 </div>
 
                 <!-- case 3: SHOP has already log in -->
-                <div class="">
+                <div class="<%- curUserType == "shop" ? "" : "d-none" %>">
                   <div class="row">
                     <div class="col-4 rounded-circle">
                       <!-- change to user image -->
@@ -376,58 +376,23 @@
                 class="dropdown-menu dropdown-100px"
                 aria-labelledby="navbarDropdownNoti"
               >
-                <div class="row">
-                  <div class="col-3 rounded-circle">
-                    <!-- change to user image -->
-                    <i
-                      class="fas fa-user raspberry fa-lg rounded-circle bg-cream p-3 m-2"
-                    ></i>
+                <% for (let i = 0; i < curUser.notice.length; ++i) { %>
+                  <div class="row">
+                    <div class="col-3 rounded-circle">
+                      <!-- change to user image -->
+                      <i
+                        class="fas fa-user raspberry fa-lg rounded-circle bg-cream p-3 m-2"
+                      ></i>
+                    </div>
+                    <div class="col-9 font-size-14 m-auto">
+                      <!-- change text -->
+                      <a class="text-dark" href="#"
+                        ><%= curUser.notice[i].detail %> </a
+                      >
+                    </div>
                   </div>
-                  <div class="col-9 font-size-14 m-auto">
-                    <!-- change text -->
-                    <a class="text-dark" href="#"
-                      >Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                      Illo perferendis similique, numquam beatae sed animi
-                      officia dolor iste ipsum, non voluptatum eaque pariatur
-                      maiores cumque harum, repellendus dignissimos rem eos.</a
-                    >
-                  </div>
-                </div>
-                <div class="dropdown-divider"></div>
-                <div class="row">
-                  <div class="col-3 rounded-circle">
-                    <i
-                      class="fas fa-user raspberry fa-lg rounded-circle bg-cream p-3 m-2"
-                    ></i>
-                  </div>
-                  <div class="col-9 font-size-14 m-auto">
-                    <a class="text-dark" href="#"
-                      >Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Hic ipsa sequi eos eius facilis, eaque nesciunt quia
-                      assumenda quisquam perspiciatis dolore, delectus cumque
-                      repellendus! Ipsa nesciunt non optio eligendi
-                      repudiandae.</a
-                    >
-                  </div>
-                </div>
-                <div class="dropdown-divider"></div>
-                <div class="row">
-                  <div class="col-3 rounded-circle">
-                    <i
-                      class="fas fa-user raspberry fa-lg rounded-circle bg-cream p-3 m-2"
-                    ></i>
-                  </div>
-                  <div class="col-9 font-size-14 m-auto">
-                    <a class="text-dark" href="#"
-                      >Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Hic ipsa sequi eos eius facilis, eaque nesciunt quia
-                      assumenda quisquam perspiciatis dolore, delectus cumque
-                      repellendus! Ipsa nesciunt non optio eligendi
-                      repudiandae.</a
-                    >
-                  </div>
-                </div>
-
+                <% } %> 
+                  <div class="dropdown-divider"></div> 
                 <div
                   class="row font-size-18 text-decoration-underline ml-5 pl-5"
                 >
@@ -438,7 +403,7 @@
 
             <!-- basket button -->
             <li class="nav-item active">
-              <a class="nav-link" href="#"
+              <a class="nav-link" href="/user/<%= curUser._id %>/cart"
                 ><i class="fas fa-shopping-basket fa-lg p-3"></i>
                 <span
                   class="d-lg-none font-size-18 my-auto font-weight-bolder raspberry ml-4"
