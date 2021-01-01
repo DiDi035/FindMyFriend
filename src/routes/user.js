@@ -30,13 +30,7 @@ router.get("/:userId/profile", requiredLogIn, async (req, res) => {
 router.get("/:userId/cart", requiredLogIn, async (req, res) => {
   const { userId } = req.params;
   const curUser = await User.findById(userId);
-  // const chosenUserCart = chosenUser.cart.slice();
-  const chosenUserCart = [
-    {
-      title: " Nhi Chihuahua",
-      price: 100000,
-    },
-  ];
+  const chosenUserCart = curUser.cart.slice();
   res.render("BasketView", {
     chosenUserCart,
     curUser,
@@ -48,7 +42,7 @@ router.post("/:userId/uploadAvatar", async (req, res) => {
   const { userId } = req.params;
   const curUser = await User.findById(userId);
   const storage = multer.diskStorage({
-    destination: "../public/upload",
+    destination: "../src/public/upload",
     filename: function (req, file, cb) {
       cb(null, file.fieldname + "-" + Date.now());
     },
@@ -79,7 +73,6 @@ router.post("/:userId/uploadAvatar", async (req, res) => {
           msg: "ERROR: No file selected",
         });
       } else {
-        // console.log(req.file.filename);
         const img = fs.readFileSync(req.file.path);
         const encodeImg = img.toString("base64");
         curUser.avatar = encodeImg;

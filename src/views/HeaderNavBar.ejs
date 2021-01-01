@@ -54,7 +54,7 @@
         <div class="collapse navbar-collapse" id="navbarCategories">
           <ul class="navbar-nav ml-4">
             <li class="nav-item dropdown">
-              <a class="nav-link" href="">
+              <a class="nav-link" href="/home/customer/1">
                 <div class="font-size-18 raspberry font-weight-bolder">All</div>
               </a>
             </li>
@@ -376,58 +376,23 @@
                 class="dropdown-menu dropdown-100px"
                 aria-labelledby="navbarDropdownNoti"
               >
-                <div class="row">
-                  <div class="col-3 rounded-circle">
-                    <!-- change to user image -->
-                    <i
-                      class="fas fa-user raspberry fa-lg rounded-circle bg-cream p-3 m-2"
-                    ></i>
+                <% for (let i = 0; i < curUser.notice.length; ++i) { %>
+                  <div class="row">
+                    <div class="col-3 rounded-circle">
+                      <!-- change to user image -->
+                      <i
+                        class="fas fa-user raspberry fa-lg rounded-circle bg-cream p-3 m-2"
+                      ></i>
+                    </div>
+                    <div class="col-9 font-size-14 m-auto">
+                      <!-- change text -->
+                      <a class="text-dark" href="#"
+                        ><%= curUser.notice[i].detail %> </a
+                      >
+                    </div>
                   </div>
-                  <div class="col-9 font-size-14 m-auto">
-                    <!-- change text -->
-                    <a class="text-dark" href="#"
-                      >Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                      Illo perferendis similique, numquam beatae sed animi
-                      officia dolor iste ipsum, non voluptatum eaque pariatur
-                      maiores cumque harum, repellendus dignissimos rem eos.</a
-                    >
-                  </div>
-                </div>
-                <div class="dropdown-divider"></div>
-                <div class="row">
-                  <div class="col-3 rounded-circle">
-                    <i
-                      class="fas fa-user raspberry fa-lg rounded-circle bg-cream p-3 m-2"
-                    ></i>
-                  </div>
-                  <div class="col-9 font-size-14 m-auto">
-                    <a class="text-dark" href="#"
-                      >Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Hic ipsa sequi eos eius facilis, eaque nesciunt quia
-                      assumenda quisquam perspiciatis dolore, delectus cumque
-                      repellendus! Ipsa nesciunt non optio eligendi
-                      repudiandae.</a
-                    >
-                  </div>
-                </div>
-                <div class="dropdown-divider"></div>
-                <div class="row">
-                  <div class="col-3 rounded-circle">
-                    <i
-                      class="fas fa-user raspberry fa-lg rounded-circle bg-cream p-3 m-2"
-                    ></i>
-                  </div>
-                  <div class="col-9 font-size-14 m-auto">
-                    <a class="text-dark" href="#"
-                      >Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                      Hic ipsa sequi eos eius facilis, eaque nesciunt quia
-                      assumenda quisquam perspiciatis dolore, delectus cumque
-                      repellendus! Ipsa nesciunt non optio eligendi
-                      repudiandae.</a
-                    >
-                  </div>
-                </div>
-
+                <% } %> 
+                  <div class="dropdown-divider"></div> 
                 <div
                   class="row font-size-18 text-decoration-underline ml-5 pl-5"
                 >

@@ -63,8 +63,7 @@
     <div class="row">
       <div class="col text-right">
         <div class="itemCost">
-          <% let sum = chosenUserCart.reduce((a, b) => a.price + b.price) %>
-          <h3 class="costTotal"><% sum %> VND</h3>
+          <h3 class="costTotal"><%- chosenUserCart.length > 0 ? chosenUserCart.reduce((a, b) => a.price + b.price) : 0 %> VND</h3>
           <h3 class="total">Total</h3>
         </div>
         <a

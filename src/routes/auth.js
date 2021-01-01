@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const express = require("express");
 const User = require("../database/models/User");
 const Shop = require("../database/models/Shop");
+const { Notice } = require("../database/models/Notice");
 const requireLogin = require("../middleware/RequiredLogin");
 
 const router = express.Router();
@@ -51,6 +52,11 @@ router.post("/register", async (req, res) => {
       name: username,
       email: email,
       password: await bcrypt.hash(password, 12),
+      notice: new Notice({
+        name: "Welcome!!!!!!!",
+        detail: "Admin want to send a special thanks to " + username + " for joining Find my friend family!",
+        type: "admin"
+      })
     });
     await user.save();
   } else if (type == "shop") {
@@ -67,8 +73,7 @@ router.post("/register", async (req, res) => {
 
 router.post("/logout", (req, res) => {
   req.session.user_id = null;
-  res.send("logout");
-  // res.redirect("/auth//login");
+  res.redirect("/auth/customer/login");
 });
 
 module.exports = router;
