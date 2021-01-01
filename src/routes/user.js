@@ -2,6 +2,7 @@ const express = require("express");
 const bcrypt = require("bcrypt");
 const fs = require("fs");
 const multer = require("multer");
+const path = require("path");
 
 const requiredLogIn = require("../middleware/RequiredLogin");
 const router = express.Router();
@@ -61,18 +62,18 @@ router.post("/:userId/uploadAvatar", async (req, res) => {
     fileFilter: function (req, file, cb) {
       checkFileType(file, cb);
     },
-  }).single("myImage");
+  }).single("fileAva");
 
   upload(req, res, (err) => {
     if (err) {
-      res.render("upload", {
+      res.render("ProfileView", {
         curUser,
         curUserType: "customer",
         msg: err,
       });
     } else {
       if (req.file == undefined) {
-        res.render("upload", {
+        res.render("ProfileView", {
           curUser,
           curUserType: "customer",
           msg: "ERROR: No file selected",
@@ -81,13 +82,12 @@ router.post("/:userId/uploadAvatar", async (req, res) => {
         // console.log(req.file.filename);
         const img = fs.readFileSync(req.file.path);
         const encodeImg = img.toString("base64");
-        curUser.avatar = new Buffer(encodeImg, "base64");
+        curUser.avatar = encodeImg;
         curUser.save();
-        res.render("upload", {
+        res.render("ProfileView", {
           curUser,
           curUserType: "customer",
           msg: req.file.filename + " uploaded",
-          ava: encodeImg,
         });
       }
     }
@@ -97,13 +97,16 @@ router.post("/:userId/uploadAvatar", async (req, res) => {
 router.put("/:userId/profile", async (req, res) => {
   const { username, password, email, address, tel } = req.body;
   const { userId } = req.params;
-  await User.findByIdAndUpdate(userId, {
-    name: username,
-    password: await bcrypt.hash(password, 12),
-    email: email,
-    address: address,
-    phone: tel,
-  });
+  const userUpdate = await User.findById(userId);
+  userUpdate.name = username;
+  userUpdate.email = email;
+  userUpdate.address = address;
+  userUpdate.phone = tel;
+  // const valid = await bcrypt.compare(password, userUpdate.password);
+  // if (!valid) {
+  //   userUpdate.password = await bcrypt.hash(password, 12);
+  // }
+  userUpdate.save();
   res.redirect("/user/" + userId + "/profile");
 });
 

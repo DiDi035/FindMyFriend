@@ -17,7 +17,7 @@ const userSchema = mongoose.Schema({
     required: true,
   },
   avatar: {
-    type: Buffer,
+    type: String,
   },
   address: {
     type: String,
@@ -42,9 +42,9 @@ userSchema.statics.isAuthenticated = async function (username, password) {
   };
 };
 
-userSchema.pre("save", async function (next) {
-  this.password = await bcrypt.hash(this.password, 12);
-  next();
-});
+// userSchema.pre("save", async function (next) {
+//   this.password = await bcrypt.hash(this.password, 12);
+//   next();
+// });
 
 module.exports = mongoose.model("User", userSchema);

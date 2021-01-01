@@ -50,7 +50,7 @@ router.post("/register", async (req, res) => {
     const user = new User({
       name: username,
       email: email,
-      password: password,
+      password: await bcrypt.hash(password, 12),
     });
     await user.save();
   } else if (type == "shop") {
