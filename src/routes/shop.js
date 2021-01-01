@@ -2,10 +2,7 @@ const Shop = require("../database/models/Shop");
 
 const express = require("express");
 const Product = require("../database/models/Product");
-const {
-  requireLogin,
-  shopRequiredLogIn,
-} = require("../middleware/RequiredLogin");
+const requireLogin = require("../middleware/RequiredLogin");
 
 const router = new express.Router();
 const multer = require("multer");
@@ -66,19 +63,19 @@ const upload = multer({
 //add products
 router.post(
   "/addProduct",
-  shopRequiredLogIn,
+  requireLogin,
   upload.array("images"),
   async (req, res) => {
     const product = new Product({
-      ...req.body,  
+      ...req.body,
       owner: req.shop._id,
-    }); 
-    const files = req.files
-    temp=[]
+    });
+    const files = req.files;
+    temp = [];
     console.log(files.length);
-    for (i=0;i<files.length;i++){
-      files[i].res
-      temp.push(files[i].buffer)
+    for (i = 0; i < files.length; i++) {
+      files[i].res;
+      temp.push(files[i].buffer);
     }
     product.images = temp;
     try {
@@ -90,6 +87,55 @@ router.post(
   }
 );
 
-router.get("/:shopName/", async (req, res) => {});
+router.get("/:shopName/addNewProduct", requireLogin, async (req, res) => {
+  const shop = req.shop;
+  res.render("ProductViewForOwner", { shop });
+});
+
+router.get("/:shopName/ownProducts", requireLogin, async (req, res) => {
+  const shop = req.shop;
+  const user = req.user;
+  const match = {};
+  const limit = 10;
+  const skip = 0;
+  const sort = {};
+  const page = 0;
+
+  if (req.query.page) {
+    page = parseInt(req.query.page)-1;
+  }
+
+  if (req.query.limit) {
+    limit = parseInt(req.query.limit);
+  }
+
+  if (req.query.skip) {
+    skip = parseInt(req.query.skip);
+  }
+
+  if (req.query.sortBy) {
+    const parts = req.query.sortBy.split(":");
+    sort[parts[0]] = part[1] === "desc" ? -1 : 1;
+  }
+
+  try {
+    await req.shop
+      .populate({
+        path: "products",
+        match,
+        options: {
+          limit,
+          skip,
+          sort,
+        },
+      })
+      .execPopulate();
+    console.log(req.shop.products);
+    const products = req.shop.products
+    res.render("ShopDetailOwnerView", { shop, user, products, page });
+  } catch (e) {
+    res.status(500).send();
+  }
+});
 
 module.exports = router;

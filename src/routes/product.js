@@ -7,7 +7,7 @@ const { options } = require("./auth");
 const router = express.Router();
 const multer = require("multer");
 
-router.get("/:proId", async (req, res) => {
+router.get("/:proId",requiredLogIn, async (req, res) => {
   const { proId } = req.params;
   pet = {};
   shop = {};
@@ -17,7 +17,9 @@ router.get("/:proId", async (req, res) => {
   } catch (e) {
     res.status(404).send();
   }
-  res.render("ProductView", { pet, shop });
+  user = req.user
+
+  res.render("ProductView", { pet, shop, user });
 });
 
 
