@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/css/colors.css" type="text/css" />
     <link rel="stylesheet" href="/css/CommonStyle.css" type="text/css" />
   </head>
-  <body
+  <body>
     <%- include('HeaderNavBar.ejs',{shop,user}) -%>
     <br />
     <div class="container Santation font-size-14 h-100">
@@ -21,10 +21,12 @@
                 <!-- might need to change link here -->
                 <a class="grass" href="/home">Home</a>
               </li>
+              <% if (breed != undefined) { %> 
               <li class="breadcrumb-item active" aria-current="page">
                 <!-- change breadcrumb here-->
-                Dog
+                <%= breed %> 
               </li>
+              <% } %> 
             </ol>
           </nav>
         </div>
@@ -83,25 +85,25 @@
           <li class="page-item">
             <a
               class="page-link m-1 border-grass rounded"
-              href="#"
+              href="/home/customer<%- breed != undefined ? "/" + breed : "" %>/<%- pageNum-1 >= 1 ? pageNum-1 : pages %>"
               aria-label="Previous"
             >
               <span class="grass" aria-hidden="true">&laquo;</span>
             </a>
           </li>
-          <li class="page-item">
-            <a class="page-link m-1 border-grass rounded" href="#"><div class="grass">1</div></a>
-          </li>
-          <li class="page-item">
-            <a class="page-link m-1 border-grass rounded" href="#"><div class="grass">2</div></a>
-          </li>
-          <li class="page-item">
-            <a class="page-link m-1 border-grass rounded" href="#"><div class="grass">3</div></a>
-          </li>
+          <% for (let i = 0; i < pages; ++i) { %>
           <li class="page-item">
             <a
               class="page-link m-1 border-grass rounded"
-              href="#"
+              href="/home/customer<%- breed != undefined ? "/" + breed : "" %>/<%= i+1 %> "
+              ><div class="grass"><%= i+1 %></div></a
+            >
+          </li>
+          <% } %>
+          <li class="page-item">
+            <a
+              class="page-link m-1 border-grass rounded"
+              href="/home/customer<%- breed != undefined ? "/" + breed : "" %>/<%- pageNum+1 <= pages ? pageNum+1 : 1 %>"
               aria-label="Next"
             >
               <span class="grass" aria-hidden="true">&raquo;</span>

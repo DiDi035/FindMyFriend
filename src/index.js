@@ -2,12 +2,13 @@ const express = require("express");
 const methodOverride = require("method-override");
 const mongoose = require("mongoose");
 const session = require("express-session");
+const path = require('path')
 
 const mainRouter = require("./routes/main");
 const authRouter = require("./routes/auth");
 const productRouter = require("./routes/product");
 const shopRouter = require("./routes/shop");
-const path = require('path')
+const userRouter = require("./routes/user");
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use("/home", mainRouter);
 app.use("/auth", authRouter);
 app.use("/product", productRouter);
 app.use("/shop", shopRouter);
+app.use("/user", userRouter);
 
 mongoose
   .connect("mongodb://localhost:27017/FindMyFriend", {
