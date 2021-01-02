@@ -39,7 +39,7 @@ const userSchema = mongoose.Schema({
 });
 
 userSchema.statics.isAuthenticated = async function (username, password) {
-  const foundUser = await this.findOne({ name: username });
+  const foundUser = await this.findOne({ email: username });
   let valid = false;
   if (foundUser) {
     valid = await bcrypt.compare(password, foundUser.password);
