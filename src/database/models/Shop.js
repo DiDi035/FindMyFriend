@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcrypt");
 
+const { noticeSchema } = require("./Notice");
+
 const shopSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -45,6 +47,9 @@ const shopSchema = new mongoose.Schema({
       ref: "Order",
     },
   ],
+  notice: {
+    type: [noticeSchema],
+  },
 });
 
 shopSchema.virtual("products", {
