@@ -48,10 +48,9 @@ const productSchema = new mongoose.Schema({
   },
   images: [
     {
-      type: Buffer
+      type: Buffer,
     },
   ],
-
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Shop",
@@ -61,4 +60,4 @@ const productSchema = new mongoose.Schema({
 
 const Product = mongoose.model("Product", productSchema);
 
-module.exports = Product;
+module.exports = { Product, productSchema };
