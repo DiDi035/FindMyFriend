@@ -22,7 +22,7 @@
   </head>
 
   <body>
-    <%- include('HeaderNavBar.ejs') -%>
+    <%- include('HeaderNavBar.ejs',{shop, user}) -%>
 
     <div class="container grass">
       <div class="row">
@@ -34,7 +34,7 @@
             </li>
             <li class="breadcrumb-item" aria-label="breadcrumb">
               <!-- might need to change link here -->
-              <a class="grass" href="#">Shop ABC</a>
+              <a class="grass" href="#"><%=shop.name%></a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">
               <!-- change breadcrumb here-->

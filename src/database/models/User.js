@@ -25,7 +25,7 @@ const userSchema = mongoose.Schema({
   },
   phone: {
     type: String,
-  },
+  },  
   cart: {
     type: [productSchema],
   },

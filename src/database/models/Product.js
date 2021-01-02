@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
+const Shop = require("./Shop");
 
 const productSchema = new mongoose.Schema({
   title: {
@@ -23,29 +24,14 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  age: [
-    {
-      year: {
-        type: Number,
-        required: true,
-        default: 0,
-        validator(value) {
-          if (value < 0) throw new Error("Age must be a positive number!");
-        },
-      },
+  month: {
+    type: Number,
+    required: true,
+    default: 0,
+    validator(value) {
+      if (value < 0) throw new Error("Months must must be a positive number!");
     },
-    {
-      month: {
-        type: Number,
-        required: true,
-        default: 0,
-        validator(value) {
-          if (value < 0)
-            throw new Error("Month must must be a positive number!");
-        },
-      },
-    },
-  ],
+  },
   isHide: {
     type: Boolean,
     required: true,
@@ -53,21 +39,26 @@ const productSchema = new mongoose.Schema({
   },
   isPurchase: {
     type: Boolean,
-    required: true,
     default: false,
   },
-  image: [{ type: Buffer }],
+  price: {
+    type: mongoose.Schema.Types.Number,
+    required: true,
+    default: 0,
+  },
+  images: [
+    {
+      type: Buffer
+    },
+  ],
+
   owner: {
     type: mongoose.Schema.Types.ObjectId,
-    required: false,
     ref: "Shop",
-  },
-  price: {
-    type: Number,
     required: true,
   },
 });
 
-const Product = mongoose.model("Products", productSchema);
+const Product = mongoose.model("Product", productSchema);
 
-module.exports = { Product, productSchema };
+module.exports = Product;
