@@ -18,7 +18,7 @@
         <i class="fas fa-paw fa-3x p-2"></i>
         <a
           class="navbar-brand search-w font-weight-bold font-size-28 my-auto"
-          href="/home/<%= curUserType %>/1"
+          href="/home/1"
           >Find My Friend</a
         >
 
@@ -54,7 +54,7 @@
         <div class="collapse navbar-collapse" id="navbarCategories">
           <ul class="navbar-nav ml-4">
             <li class="nav-item dropdown">
-              <a class="nav-link" href="/home/customer/1">
+              <a class="nav-link" href="/home/1">
                 <div class="font-size-18 raspberry font-weight-bolder">All</div>
               </a>
             </li>
@@ -78,7 +78,7 @@
                 <!-- add animal breed here -->
                 <a
                   class="font-size-18 grass m-auto pl-4 dropdown-item"
-                  href="/home/<%= curUserType %>/Chihuahua/1"
+                  href="/home/Chihuahua/1"
                   >Chihuahua</a
                 >
                 <div class="dropdown-divider"></div>
@@ -266,7 +266,7 @@
                 </div>
 
                 <!-- case 2: CUSTOMER has already log in -->
-                <div class="<%- curUserType == "customer" ? "" : "d-none" %>">
+                <div class="<%- user != null ? "" : "d-none" %>">
                   <div class="row">
                     <div class="col-4 rounded-circle">
                       <!-- change to user image -->
@@ -279,12 +279,12 @@
                         class="row font-size-18 mx-3 text-dark font-weight-bolder"
                       >
                         <!-- change user name here -->
-                        <%= curUser.name %> 
+                        <%- user != null ? user.name : "" %> 
                       </div>
                       <div
                         class="row font-weight-lighter font-size-14 mx-2 text-decoration-underline"
                       >
-                        <a class="text-black-50" href="/user/<%= curUser._id %>/profile">See your profile</a>
+                        <a class="text-black-50" href="/user/<%= user._id %>/profile">See your profile</a>
                       </div>
                     </div>
                   </div>
@@ -304,7 +304,7 @@
                 </div>
 
                 <!-- case 3: SHOP has already log in -->
-                <div class="<%- curUserType == "shop" ? "" : "d-none" %>">
+                <div class="<%- shop != null ? "" : "d-none" %>">
                   <div class="row">
                     <div class="col-4 rounded-circle">
                       <!-- change to user image -->
@@ -317,7 +317,7 @@
                         class="row font-size-18 mx-3 text-dark font-weight-bolder"
                       >
                         <!-- change user name here -->
-                        Shop name
+                        <%- shop != null ? shop.name : "" %>
                       </div>
                       <div
                         class="row font-weight-lighter font-size-14 mx-2 text-decoration-underline"
@@ -376,7 +376,7 @@
                 class="dropdown-menu dropdown-100px"
                 aria-labelledby="navbarDropdownNoti"
               >
-                <% for (let i = 0; i < curUser.notice.length; ++i) { %>
+                <% for (let i = 0; i < user.notice.length ; ++i) { %>
                   <div class="row">
                     <div class="col-3 rounded-circle">
                       <!-- change to user image -->
@@ -387,7 +387,7 @@
                     <div class="col-9 font-size-14 m-auto">
                       <!-- change text -->
                       <a class="text-dark" href="#"
-                        ><%= curUser.notice[i].detail %> </a
+                        ><%= user.notice[i].detail %> </a
                       >
                     </div>
                   </div>
@@ -402,8 +402,8 @@
             </li>
 
             <!-- basket button -->
-            <li class="nav-item active">
-              <a class="nav-link" href="/user/<%= curUser._id %>/cart"
+            <li class="nav-item active <%- user != null && user.type != "admin" ? "" : "d-none" %>">
+              <a class="nav-link" href="/user/<%= user._id %>/cart"
                 ><i class="fas fa-shopping-basket fa-lg p-3"></i>
                 <span
                   class="d-lg-none font-size-18 my-auto font-weight-bolder raspberry ml-4"
