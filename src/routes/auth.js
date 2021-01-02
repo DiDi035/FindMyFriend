@@ -52,6 +52,11 @@ router.post("/register", async (req, res) => {
                 name: username,
                 email: email,
                 password: password,
+                notice: new Notice({
+                    name: "Welcome",
+                    detail: "Welcome to Find my friend community - a special thanks from admin",
+                    type: "admin"
+                })
             });
             await user.save();
             res.redirect("/auth/customer/login");
