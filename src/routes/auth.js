@@ -36,39 +36,38 @@ router.post("/customer/login", async (req, res) => {
 
 router.post("/shop/login", async (req, res) => {
   const { username, password } = req.body;
-  const { valid, foundUser } = await Shop.isAuthenticated(username, password);
-  if (valid) {
-    req.session.user_id = foundUser._id;
-    res.redirect("/home/1");
-  } else {
+  const shop = await Shop.isAuthenticated(username, password);
+  if (!shop) {
     res.redirect("/auth/shop/login");
+  } else {
+    req.session.user_id = shop._id;
+    res.redirect("/home");
   }
 });
 
 router.post("/register", async (req, res) => {
   const { username, password, email, type } = req.body;
-  if (type == "customer") {
-    const user = new User({
-      name: username,
-      email: email,
-      password: await bcrypt.hash(password, 12),
-      notice: new Notice({
-        name: "Welcome!!!!!!!",
-        detail: "Admin want to send a special thanks to " + username + " for joining Find my friend family!",
-        type: "admin"
-      })
-    });
-    await user.save();
-  } else if (type == "shop") {
-    // const shop = new Shop({
-    //   name: username,
-    //   email: email,
-    //   password: password,
-    // });
-    // await shop.save();
-    res.redirect("/auth/shop/login");
+  try {
+    if (type == "customer") {
+      const user = new User({
+        name: username,
+        email: email,
+        password: password,
+      });
+      await user.save();
+      res.redirect("/auth/customer/login");
+    } else if (type == "shop") {
+      const shop = new Shop({
+        name: username,
+        email: email,
+        password: password,
+      });
+      await shop.save();
+      res.redirect("/auth/shop/login");
+    }
+  } catch (e) {
+    res.redirect("/auth/register")
   }
-  res.redirect("/auth/customer/login");
 });
 
 router.post("/logout", (req, res) => {
