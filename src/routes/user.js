@@ -38,6 +38,12 @@ router.get("/:userId/cart", requiredLogIn, async (req, res) => {
   });
 });
 
+router.get("/userId/noti", requiredLogIn, async (req, res) => {
+  const { userId } = req.params;
+  const curUser = await User.findById(userId);
+  
+});
+
 router.post("/:userId/uploadAvatar", async (req, res) => {
   const { userId } = req.params;
   const curUser = await User.findById(userId);
