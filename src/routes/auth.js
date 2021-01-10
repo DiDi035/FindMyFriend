@@ -51,13 +51,14 @@ router.post("/register", async (req, res) => {
             const user = new User({
                 name: username,
                 email: email,
-                password: password,
+                password: await bcrypt.hash(password, 12),
                 notice: new Notice({
                     name: "Welcome",
                     detail: "Welcome to Find my friend community - a special thanks from admin",
                     type: "admin"
                 })
             });
+            console.log(user.password)
             await user.save();
             res.redirect("/auth/customer/login");
         } else if (type == "shop") {
@@ -79,9 +80,9 @@ router.post("/register", async (req, res) => {
     }
 });
 
-router.post("/logout", (req, res) => {
+router.get("/logout", (req, res) => {
     req.session.user_id = null;
-    res.redirect("/auth/customer/login");
+    res.render("WelcomePage");
 });
 
 module.exports = router;
