@@ -63,6 +63,7 @@ router.post("/register", async (req, res) => {
         name: username,
         email: email,
         password: password,
+        avatar: undefined,
       });
       await shop.save();
       res.redirect("/auth/shop/login");

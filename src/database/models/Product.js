@@ -12,7 +12,7 @@ const productSchema = new mongoose.Schema({
     required: true,
   },
   breed: {
-    type: String,
+    type: String,   
     required: true,
   },
   gender: {

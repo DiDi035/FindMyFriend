@@ -43,11 +43,12 @@
             <img src="/images/sp-loading.gif" alt="" /><br />LOADING IMAGES
           </div>
           <div class="sp-wrap">
-            <%for (i=0;i < pet.images.length;i++){%>
-              <a href="data:image/jpeg;base64,<%= new Buffer(pet.images[1]).toString('base64')%>">
-                <img src="data:image/jpeg;base64,<%= new Buffer(pet.images[1]).toString('base64')%>"
-                  alt="" /></a>
-              <%}%>
+            <% if (pet !=undefined ) {%>
+              <%for (i=0;i < pet.images.length;i++){%>
+                <a href="data:image/jpeg;base64,<%= new Buffer(pet.images[i]).toString('base64')%>">
+                  <img src="data:image/jpeg;base64,<%= new Buffer(pet.images[i]).toString('base64')%>" alt="" /></a>
+                <%}%>
+                  <%}%>
           </div>
           <div id="imgLabel">-- Pet Images --</div>
         </div>

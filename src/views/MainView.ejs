@@ -55,9 +55,8 @@
               href="/product/<%= allPets[i]._id %>"
               class="card no-border no-bg col badge badge-light width"
             >
-              
               <img
-                src="data:image/jpeg;base64,<%= new Buffer(allPets[i].images[1]).toString('base64')%>"
+                src="data:image/jpeg;base64,<%= new Buffer(allPets[i].images[0]).toString('base64')%>"
                 class="card-img-top img-fluid w-100 rounded mx-auto d-block"
                 alt="Responsive image"
               />
@@ -110,9 +109,7 @@
         </ul>
       </nav>
     </div>
-
     <%- include('FooterNavBar.ejs') -%>
-
     <script
       src="https://kit.fontawesome.com/4327c3ebe1.js"
       crossorigin="anonymous"

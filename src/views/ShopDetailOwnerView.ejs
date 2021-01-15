@@ -61,7 +61,7 @@
               <br>
               Address: <%=shop.address%>
           </div>
-          <a class="btn btn-dark btn-change d-flex justify-content-center m-5" href="<%= '/shop/'+shop.name+'addProducts'%>" 
+          <a class="btn btn-dark btn-change d-flex justify-content-center m-5" href="<%= '/shop/'+shop.name+'/addNewProduct'%>" 
             role="button">Add a product</a>
         </div>
         <!-- products -->
@@ -77,13 +77,14 @@
               <% for (let col = 0 ; col < colMax ; col++) { %>
                 <%const i = page*9+row*3+col;%>
                 <%if ( i < numOfProducts) { %>
-                  <a class="card no-border no-bg col badge badge-light width p-3">
-                    <img src="data:image/jpeg;base64,<%= new Buffer(products[i].images[1]).toString('base64')%>" 
+                  <a class="card no-border no-bg col badge badge-light width p-3"
+                  href="<%= '/shop/'+shop.name+'/editProduct/'+products[i]._id%>">
+                    <img src="data:image/jpeg;base64,<%= new Buffer(products[i].images[0]).toString('base64')%>" 
                       class="card-img-top img-fluid w-100 rounded mx-auto d-block"
                       alt="Responsive image" />
 
                     <div class="card-img-overlay">
-                      <button class="iconify font-size-28 close" data-inline="false"
+                      <button class="iconify font-size-28 close" data-inline="true"
                         data-icon="bi:x-circle"></button>
                     </div>
 
