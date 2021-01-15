@@ -196,16 +196,12 @@ router.get("/:shopName/editProfile", requireLogin, async (req, res) => {
   res.render("ProfileView", { shop, user });
 });
 
-router.post(
-  "/:shopName/editProfile",
-  requireLogin,
-  async (req, res) => {
-    const shop = req.shop;
-    const user = req.user;
+router.post("/:shopName/editProfile", requireLogin, async (req, res) => {
+  const shop = req.shop;
+  const user = req.user;
 
-    res.render("ProfileView", { shop, user });
-  }
-);
+  res.render("ProfileView", { shop, user });
+});
 
 router.post("/:shopName/uploadAvatar", requireLogin, async (req, res) => {
   const { shopName } = req.params;
@@ -242,7 +238,7 @@ router.post("/:shopName/uploadAvatar", requireLogin, async (req, res) => {
         });
       } else {
         const img = fs.readFileSync(req.file.path);
-        const encodeImg = img.toString("base64"); 
+        const encodeImg = img.toString("base64");
         user.avatar = encodeImg;
         user.save();
         res.render("ProfileView", {

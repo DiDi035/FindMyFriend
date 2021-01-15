@@ -44,8 +44,8 @@
         <div class="col mt-2">
           <div class="messagersList">
             <ul class="messagersWrap">
-              <% if (user != null) { %> <% for (let i = 0; i <
-              user.notice.length; ++i) { %>
+              <% if (user != null) { %> 
+              <% for (let i = 0; i < user.notice.length; ++i) { %>
               <il class="messager">
                 <hr class="mt-5 mb-5" />
                 <div class="infoMessager">
@@ -63,8 +63,10 @@
                 </div>
                 <hr class="mt-5 mb-5" />
               </il>
-              <% } %> <% } %> <% if (shop != null) { %> <% for (let i = 0; i <
-              shop.notice.length; ++i) { %>
+              <% } %> 
+              <% } %> 
+              <% if (shop != null) { %> 
+              <% for (let i = 0; i < shop.notice.length; ++i) { %>
               <il class="messager">
                 <hr class="mt-5 mb-5" />
                 <div
@@ -84,10 +86,8 @@
                     <i class="fa fa-trash" style="color: #7f867b"></i>
                   </button>
                 </div>
-                <!-- Modal-->
                 <div class="modal fade" id="myModal" role="dialog">
                   <div class="modal-dialog">
-                    <!-- Modal content-->
                     <div class="modal-content">
                       <div
                         type="button"
@@ -103,18 +103,18 @@
                         </div>
                         <hr class="myModal-hr" />
                         <div class="myModal-body">
-                          <h5>User ABC want to buy a pet.</h5>
+                          <h5><%= shop.notice[i].detail %></h5>
                         </div>
                         <div class="myModal-footer">
                           <button
                             type="button"
-                            class="sellButton btn-primary btn-lg"
+                            class="sellButton btn-primary btn-lg <%- shop.notice[i].type == "order" ? "" : "d-none" %>"
                           >
                             Sell
                           </button>
                           <button
                             type="button"
-                            class="rejectButton btn-primary btn-lg"
+                            class="rejectButton btn-primary btn-lg <%- shop.notice[i].type == "order" ? "" : "d-none" %>"
                           >
                             Reject
                           </button>
@@ -125,7 +125,8 @@
                 </div>
                 <hr class="mt-5 mb-5" />
               </il>
-              <% } %> <% } %>
+              <% } %> 
+              <% } %>
             </ul>
           </div>
         </div>

@@ -50,9 +50,11 @@
                   <h4 style="color: #7f867b">
                     <%= chosenUserCart[i].price %> VND
                   </h4>
-                  <button class="buttonRemove border-0 btn-lg">
-                    <i class="fa fa-trash" style="color: #7f867b"></i>
-                  </button>
+                  <form action="/user/<%= chosenUserCart[i]._id %>/removeCart?_method=PUT" method="POST">
+                    <button class="buttonRemove border-0 btn-lg">
+                      <i class="fa fa-trash" style="color: #7f867b"></i>
+                    </button>
+                  </form>
                 </div>
               </div>
             </li>

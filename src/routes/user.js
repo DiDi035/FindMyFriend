@@ -127,6 +127,20 @@ router.put("/:userId/profile", requiredLogIn, async (req, res) => {
   res.redirect("/user/" + user._id + "/profile");
 });
 
+router.put("/:petId/removeCart", requiredLogIn, async (req, res) => {
+  const shop = req.shop;
+  const user = req.user;
+  const { petId } = req.params;
+  for (let i = 0; i < user.cart.length; ++i) {
+    if (user.cart[i]._id == petId) {
+      user.cart.splice(i, 1);
+      break;
+    }
+  }
+  await user.save();
+  res.redirect("/user/" + user._id + "/cart");
+});
+
 router.put("/:userID/deleteNoti/:noticeIndex", async (req, res) => {
   const { userID, noticeIndex } = req.params;
   const userUpdate = await User.findById(userID);
