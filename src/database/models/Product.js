@@ -12,7 +12,7 @@ const productSchema = new mongoose.Schema({
     required: true,
   },
   breed: {
-    type: String,   
+    type: String,
     required: true,
   },
   gender: {
@@ -31,53 +31,31 @@ const productSchema = new mongoose.Schema({
     validator(value) {
       if (value < 0) throw new Error("Months must must be a positive number!");
     },
-    animal: {
-        type: String,
-        required: true,
+  },
+  isHide: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
+  isPurchase: {
+    type: Boolean,
+    default: false,
+  },
+  price: {
+    type: mongoose.Schema.Types.Number,
+    required: true,
+    default: 0,
+  },
+  images: [
+    {
+      type: Buffer,
     },
-    breed: {
-        type: String,
-        required: true,
-    },
-    gender: {
-        type: String,
-        required: true,
-        enum: ["Male", "Female"],
-    },
-    color: {
-        type: String,
-        required: true,
-    },
-    month: {
-        type: Number,
-        required: true,
-        default: 0,
-        validator(value) {
-            if (value < 0) throw new Error("Months must must be a positive number!");
-        },
-    },
-    isHide: {
-        type: Boolean,
-        required: true,
-        default: false,
-    },
-    isPurchase: {
-        type: Boolean,
-        default: false,
-    },
-    price: {
-        type: mongoose.Schema.Types.Number,
-        required: true,
-        default: 0,
-    },
-    images: [{
-        type: Buffer,
-    }, ],
-    owner: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Shop",
-        required: true,
-    },
+  ],
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Shop",
+    required: true,
+  },
 });
 
 const Product = mongoose.model("Product", productSchema);

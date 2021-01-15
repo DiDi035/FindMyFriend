@@ -1,47 +1,58 @@
 const Shop = require("../database/models/Shop");
 const express = require("express");
-const Product = require("../database/models/Product");
+const { Product } = require("../database/models/Product");
 const requireLogin = require("../middleware/RequiredLogin");
 
 const router = new express.Router();
 const multer = require("multer");
 const { stringify } = require("uuid");
 
+const checkFileType = (file, cb) => {
+  const fileType = /jpeg|jpg|png|gif/;
+  const extName = fileType.test(path.extname(file.originalname));
+  const mimeType = fileType.test(file.mimetype);
+  if (mimeType && extName) {
+    return cb(null, true);
+  } else {
+    cb("ERROR: This file is not an image");
+  }
+};
+
 router.get("/:shopName", async (req, res) => {
-    const match = {};
-    const limit = 10;
-    const skip = 0;
-    const sort = {};
+  const match = {};
+  const limit = 10;
+  const skip = 0;
+  const sort = {};
 
-    if (req.query.limit) {
-        limit = parseInt(req.query.limit);
-    }
+  if (req.query.limit) {
+    limit = parseInt(req.query.limit);
+  }
 
-    if (req.query.skip) {
-        limit = parseInt(req.query.skip);
-    }
+  if (req.query.skip) {
+    limit = parseInt(req.query.skip);
+  }
 
-    if (req.query.sortBy) {
-        const parts = req.query.sortBy.split(":");
-        sort[parts[0]] = part[1] === "desc" ? -1 : 1;
-    }
-    try {
-        await req.shop
-            .populate({
-                path: "products",
-                match,
-                options: {
-                    limit,
-                    skip,
-                    sort,
-                },
-            })
-            .execPopulate();
+  if (req.query.sortBy) {
+    const parts = req.query.sortBy.split(":");
+    sort[parts[0]] = part[1] === "desc" ? -1 : 1;
+  }
+  try {
+    await req.shop
+      .populate({
+        path: "products",
+        match,
+        options: {
+          limit,
+          skip,
+          sort,
+        },
+      })
+      .execPopulate();
 
-        res.send(res.shop.products);
-    } catch (e) {
-        res.status(500).send();
-    }
+    res.send(res.shop.products);
+  } catch (e) {
+    res.status(500).send();
+  }
 });
 
 // upload product's images
@@ -93,6 +104,12 @@ router.get("/:shopName/addNewProduct", requireLogin, async (req, res) => {
   res.render("ProductViewForOwner", { shop, user, product });
 });
 
+router.get("/:shopId/noti", requireLogin, async (req, res) => {
+  const shop = req.shop;
+  const user = req.user;
+  res.render("NotificationView", { user, shop });
+});
+
 router.post(
   "/:shopName/addNewProduct",
   requireLogin,
@@ -107,7 +124,6 @@ router.post(
     for (let i = 0; i < files.length; i++) {
       temp.push(files[i].buffer);
     }
-    console.log(req.body);
     try {
       const product = new Product({
         ...req.body,
@@ -164,7 +180,6 @@ router.post(
         for (let i = 0; i < files.length; i++) {
           product.images.push(files[i].buffer);
         }
-        
       }
       await product.save();
     } catch (e) {
@@ -175,26 +190,69 @@ router.post(
   }
 );
 
-router.get(
-  "/:shopName/editProfile",
-  requireLogin,
-  async (req, res) => {
-    const shop = req.shop;
-    const user = req.user;
-    res.render("ProfileView", { shop, user });
-  }
-);
+router.get("/:shopName/editProfile", requireLogin, async (req, res) => {
+  const shop = req.shop;
+  const user = req.user;
+  res.render("ProfileView", { shop, user });
+});
 
 router.post(
   "/:shopName/editProfile",
   requireLogin,
-  upload.single("avatar"),
   async (req, res) => {
     const shop = req.shop;
     const user = req.user;
+
     res.render("ProfileView", { shop, user });
   }
 );
+
+router.post("/:shopName/uploadAvatar", requireLogin, async (req, res) => {
+  const { shopName } = req.params;
+  const shop = req.shop;
+  const user = req.user;
+  const storage = multer.diskStorage({
+    destination: "../src/public/upload",
+    filename: function (req, file, cb) {
+      cb(null, file.fieldname + "-" + Date.now());
+    },
+  });
+
+  const upload = multer({
+    storage: storage,
+    limits: {
+      fileSize: 10000000,
+    },
+    fileFilter: function (req, file, cb) {
+      checkFileType(file, cb);
+    },
+  }).single("fileAva");
+
+  upload(req, res, (err) => {
+    if (err) {
+      res.render("ProfileView", {
+        user,
+        shop,
+      });
+    } else {
+      if (req.file == undefined) {
+        res.render("ProfileView", {
+          user,
+          shop,
+        });
+      } else {
+        const img = fs.readFileSync(req.file.path);
+        const encodeImg = img.toString("base64"); 
+        user.avatar = encodeImg;
+        user.save();
+        res.render("ProfileView", {
+          user,
+          shop,
+        });
+      }
+    }
+  });
+});
 
 router.get("/:shopName/ownProducts", requireLogin, async (req, res) => {
   const shop = req.shop;
