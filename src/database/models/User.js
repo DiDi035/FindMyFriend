@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
 const { productSchema } = require("./Product");
+const { noticeSchema } = require("./Notice");
 
 const userSchema = mongoose.Schema({
   name: {
@@ -17,16 +18,24 @@ const userSchema = mongoose.Schema({
     required: true,
   },
   avatar: {
-    type: Buffer,
-    required: false,
+    type: String,
   },
-  cart: [
-    {
-      type: mongoose.SchemaTypes.ObjectId,
-      required: true,
-      ref:"Product"
-    },
-  ],  
+  address: {
+    type: String,
+  },
+  phone: {
+    type: String,
+  },  
+  cart: {
+    type: [productSchema],
+  },
+  money: {
+    type: Number,
+    default: 1000000,
+  },
+  notice: {
+    type: [noticeSchema],
+  },
 });
 
 userSchema.statics.isAuthenticated = async function (username, password) {
@@ -41,9 +50,9 @@ userSchema.statics.isAuthenticated = async function (username, password) {
   };
 };
 
-userSchema.pre("save", async function (next) {
-  this.password = await bcrypt.hash(this.password, 12);
-  next();
-});
+// userSchema.pre("save", async function (next) {
+//   this.password = await bcrypt.hash(this.password, 12);
+//   next();
+// });
 
 module.exports = mongoose.model("User", userSchema);

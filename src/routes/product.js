@@ -1,5 +1,4 @@
 const express = require("express");
-
 const requiredLogIn = require("../middleware/RequiredLogin");
 const Product = require("../database/models/Product");
 const Shop = require("../database/models/Shop");
@@ -18,10 +17,7 @@ router.get("/:proId",requiredLogIn, async (req, res) => {
     res.status(404).send();
   }
   user = req.user
-
   res.render("ProductView", { pet, shop, user });
 });
-
-
 
 module.exports = router;

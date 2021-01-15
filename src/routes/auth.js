@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const express = require("express");
 const User = require("../database/models/User");
 const Shop = require("../database/models/Shop");
+const { Notice } = require("../database/models/Notice");
 const requireLogin = require("../middleware/RequiredLogin");
 
 const router = express.Router();
@@ -27,7 +28,7 @@ router.post("/customer/login", async (req, res) => {
   const { valid, foundUser } = await User.isAuthenticated(username, password);
   if (valid) {
     req.session.user_id = foundUser._id;
-    res.redirect("/home");
+    res.redirect("/home/customer/1");
   } else {
     res.redirect("/auth/customer/login");
   }
@@ -48,7 +49,6 @@ router.post("/register", async (req, res) => {
   const { username, password, email, type } = req.body;
   try {
     if (type == "customer") {
-      console.log("vodayr");
       const user = new User({
         name: username,
         email: email,
@@ -56,9 +56,7 @@ router.post("/register", async (req, res) => {
       });
       await user.save();
       res.redirect("/auth/customer/login");
-
     } else if (type == "shop") {
-      console.log("vodayr");
       const shop = new Shop({
         name: username,
         email: email,
@@ -67,7 +65,6 @@ router.post("/register", async (req, res) => {
       });
       await shop.save();
       res.redirect("/auth/shop/login");
-
     }
   } catch (e) {
     res.redirect("/auth/register")
@@ -76,8 +73,7 @@ router.post("/register", async (req, res) => {
 
 router.post("/logout", (req, res) => {
   req.session.user_id = null;
-  res.send("logout");
-  // res.redirect("/auth//login");
+  res.redirect("/auth/customer/login");
 });
 
 module.exports = router;
