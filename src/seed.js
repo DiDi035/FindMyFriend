@@ -21,13 +21,10 @@ const dataProduct = [
     breed: "Chihuahua",
     gender: "Female",
     color: "Pink",
-    age: {
-      year: 1,
-      month: 0,
-    },
+    month: 2,
     isHide: false,
     isPurchase: false,
-    price: 1000,
+    price: 1000000,
   },
 ];
 

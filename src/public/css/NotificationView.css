@@ -7,7 +7,7 @@
 .breadcrumb-item + .breadcrumb-item::before {
     content: ">";
 }
-hr.mt-2 {
+hr.mt-5 {
     border-style: solid;
     border-color: #BA494B;
     border-width: 1px;
@@ -18,17 +18,13 @@ hr.mt-2 {
     height: 8em;
     width: 8em;
 }
-.info {
-    padding: 2em 0 0 4em;
-    position: relative;
-}
-.infoMessager .messagerAndRemove {
-    margin-left: 5em;
-}
-.buttonRemove
-{
+.buttonRemove {
     float: right;
     background-color: white;
     color: #7F867B;
     margin-top: 1em;
+}
+.messagerAndRemove {
+    width: 50em;
+    margin-left: 2em;
 }
