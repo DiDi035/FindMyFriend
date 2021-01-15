@@ -8,122 +8,142 @@ const requiredLogIn = require("../middleware/RequiredLogin");
 const router = express.Router();
 
 const User = require("../database/models/User");
+const Shop = require("../database/models/Shop");
+const Notice = require("../database/models/Notice");
 
 // Check if uploaded file type valid
 const checkFileType = (file, cb) => {
-    const fileType = /jpeg|jpg|png|gif/;
-    const extName = fileType.test(path.extname(file.originalname));
-    const mimeType = fileType.test(file.mimetype);
-    if (mimeType && extName) {
-        return cb(null, true);
-    } else {
-        cb("ERROR: This file is not an image");
-    }
+  const fileType = /jpeg|jpg|png|gif/;
+  const extName = fileType.test(path.extname(file.originalname));
+  const mimeType = fileType.test(file.mimetype);
+  if (mimeType && extName) {
+    return cb(null, true);
+  } else {
+    cb("ERROR: This file is not an image");
+  }
 };
 
 router.get("/:userId/profile", requiredLogIn, async (req, res) => {
-    const {
-        userId
-    } = req.params;
-    const shop = req.shop;
-    const user = req.user;
-    res.render("ProfileViewCustomer", {
-        user,
-        shop
-    });
+  const { userId } = req.params;
+  const shop = req.shop;
+  const user = req.user;
+  res.render("ProfileViewCustomer", {
+    user,
+    shop,
+  });
 });
 
 router.get("/:userId/cart", requiredLogIn, async (req, res) => {
-    const {
-        userId
-    } = req.params;
-    const shop = req.shop;
-    const user = req.user;
-    const chosenUserCart = user.cart.slice();
-    res.render("BasketView", {
+  const { userId } = req.params;
+  const shop = req.shop;
+  const user = req.user;
+  const chosenUserCart = user.cart.slice();
+  res.render("BasketView", {
+    user,
+    shop,
+    chosenUserCart,
+  });
+});
+
+router.get("/:userId/noti", requiredLogIn, async (req, res) => {
+  const shop = req.shop;
+  const user = req.user;
+  res.render("NotificationView", { user, shop });
+});
+
+router.post("/:userId/uploadAvatar", requiredLogIn, async (req, res) => {
+  const { userId } = req.params;
+  const shop = req.shop;
+  const user = req.user;
+  const storage = multer.diskStorage({
+    destination: "../src/public/upload",
+    filename: function (req, file, cb) {
+      cb(null, file.fieldname + "-" + Date.now());
+    },
+  });
+
+  const upload = multer({
+    storage: storage,
+    limits: {
+      fileSize: 10000000,
+    },
+    fileFilter: function (req, file, cb) {
+      checkFileType(file, cb);
+    },
+  }).single("fileAva");
+
+  upload(req, res, (err) => {
+    if (err) {
+      res.render("ProfileViewCustomer", {
         user,
         shop,
-        chosenUserCart
-    });
+      });
+    } else {
+      if (req.file == undefined) {
+        res.render("ProfileViewCustomer", {
+          user,
+          shop,
+        });
+      } else {
+        const img = fs.readFileSync(req.file.path);
+        const encodeImg = img.toString("base64");
+        user.avatar = encodeImg;
+        user.save();
+        res.render("ProfileViewCustomer", {
+          user,
+          shop,
+        });
+      }
+    }
+  });
 });
 
-router.get("/userId/noti", requiredLogIn, async (req, res) => {
-
+router.put("/:userId/profile", requiredLogIn, async (req, res) => {
+  const shop = req.shop;
+  const user = req.user;
+  const { username, email, password, re_password } = req.body;
+  user.name = username;
+  user.email = email;
+  if (re_password != "" && re_password == password) {
+    user.password = await bcrypt.hash(password, 12);
+  }
+  user.save();
+  res.redirect("/user/" + user._id + "/profile");
 });
 
-router.post("/:userId/uploadAvatar", async (req, res) => {
-    const {
-        userId
-    } = req.params;
-    const curUser = await User.findById(userId);
-    const storage = multer.diskStorage({
-        destination: "../src/public/upload",
-        filename: function(req, file, cb) {
-            cb(null, file.fieldname + "-" + Date.now());
-        },
-    });
-
-    const upload = multer({
-        storage: storage,
-        limits: {
-            fileSize: 10000000,
-        },
-        fileFilter: function(req, file, cb) {
-            checkFileType(file, cb);
-        },
-    }).single("fileAva");
-
-    upload(req, res, (err) => {
-        if (err) {
-            res.render("ProfileView", {
-                curUser,
-                curUserType: "customer",
-                msg: err,
-            });
-        } else {
-            if (req.file == undefined) {
-                res.render("ProfileView", {
-                    curUser,
-                    curUserType: "customer",
-                    msg: "ERROR: No file selected",
-                });
-            } else {
-                const img = fs.readFileSync(req.file.path);
-                const encodeImg = img.toString("base64");
-                curUser.avatar = encodeImg;
-                curUser.save();
-                res.render("ProfileView", {
-                    curUser,
-                    curUserType: "customer",
-                    msg: req.file.filename + " uploaded",
-                });
-            }
-        }
-    });
+router.put("/:userID/deleteNoti/:noticeIndex", async (req, res) => {
+  const { userID, noticeIndex } = req.params;
+  const userUpdate = await User.findById(userID);
+  const index = parseInt(noticeIndex);
+  userUpdate.notice.splice(index, 1);
+  userUpdate.save();
+  res.redirect("/user/" + userID + "/noti");
 });
 
-router.put("/:userId/profile", async (req, res) => {
-    const {
-        username,
-        password,
-        email,
-        address,
-        tel
-    } = req.body;
-    const {
-        userId
-    } = req.params;
-    const userUpdate = await User.findById(userId);
-    userUpdate.name = username;
-    userUpdate.email = email;
-    userUpdate.address = address;
-    userUpdate.phone = tel;
-    // const valid = await bcrypt.compare(password, userUpdate.password);
-    // if (!valid) {
-    //   userUpdate.password = await bcrypt.hash(password, 12);
-    // }
-    userUpdate.save();
-    res.redirect("/user/" + userId + "/profile");
+router.put("/:userId/purchase", async (req, res) => {
+  const shop = req.shop;
+  const user = req.user;
+  for (let i = 0; i < user.cart.length; ++i) {
+    let ownerID = user.cart[i].owner;
+    let owner = await Shop.findById(ownerID);
+    if (owner != null) {
+      owner.notice.push(
+        new Notice({
+          name: "New order",
+          detail:
+            user.name +
+            " want to buy " +
+            user.cart[i].title +
+            " from your shop",
+          type: "order",
+        })
+      );
+      owner.save();
+    }
+  }
+  user.cart = [];
+  user.save();
+  res.redirect("/user/" + user._id + "/cart");
 });
 
 module.exports = router;

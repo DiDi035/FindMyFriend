@@ -13,12 +13,14 @@
 
   <body>
     <%- include('HeaderNavBar.ejs', {user, shop}) -%>
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb bg-white">
-        <li class="breadcrumb-item"><a href="#">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">Basket</li>
-      </ol>
-    </nav>
+    <div class="container Santation">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb bg-white">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Cart</li>
+        </ol>
+      </nav>
+    </div>
     <div class="container-md my-3 shadow p-3 mb-5 bg-white">
       <div class="row mt-3 mb-1">
         <div class="col">
@@ -63,17 +65,21 @@
     <div class="row">
       <div class="col text-right">
         <div class="itemCost">
-          <h3 class="costTotal"><%- chosenUserCart.length > 0 ? chosenUserCart.reduce((a, b) => a.price + b.price) : 0 %> VND</h3>
+          <h3 class="costTotal">
+            <%- chosenUserCart.length > 0 ? chosenUserCart.reduce((a, b) =>
+            a.price + b.price) : 0 %> VND
+          </h3>
           <h3 class="total">Total</h3>
         </div>
-        <a
-          href="#"
-          style="background-color: #7f423d"
-          class="btn btn-secondary btn-lg active mt-3 mb-3 mr-5"
-          role="button"
-          aria-pressed="true"
-          >Process To Checkout</a
-        >
+        <form action="/user/<%= user._id %>/purchase?_method=PUT" method="POST">
+          <button
+            style="background-color: #7f423d"
+            class="btn btn-secondary btn-lg active mt-3 mb-3 mr-5"
+            type="submit"
+          >
+            Process To Checkout
+          </button>
+        </form>
       </div>
     </div>
     <%- include('FooterNavBar.ejs') -%>

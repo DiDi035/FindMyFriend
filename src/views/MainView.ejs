@@ -89,7 +89,7 @@
                 <% } %>
                 <li class="page-item">
                     <a class="page-link m-1 border-grass rounded" href="/home<%- typeof breed != "undefined" ? "/" + breed : "" %>/
-                        <%- pageNum+1 <= pages ? pageNum+1 : 1 %>"
+                        <%- pageNum+1 <= pages ? pageNum+1 : "1" %>"
                         aria-label="Next"
                         >
                         <span class="grass" aria-hidden="true">&raquo;</span>

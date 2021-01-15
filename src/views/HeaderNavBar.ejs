@@ -157,7 +157,7 @@
                                         <i class="fas fa-sign-out-alt raspberry fa-lg px-3 m-2"></i>
                                     </div>
                                     <div class="col-8 font-size-18">
-                                        <a class="text-dark font-weight-bolder" href="auth/login">Log out</a>
+                                        <a class="text-dark font-weight-bolder" href="/auth/logout">Log out</a>
                                     </div>
                                 </div>
                             </div>
@@ -229,15 +229,15 @@
                                 </div>
                                 <div class="col-9 font-size-14 m-auto">
                                     <!-- change text -->
-                                    <a class="text-dark" href="#">
+                                    <a class="text-dark" href="/user/<%- user != null ? user._id : "" %>/noti">
                                         <%= shop.notice[i].detail %> </a>
                                 </div>
                             </div>
                             <% } %>
                             <% } %>
                             <div class="dropdown-divider"></div>
-                            <div class="row font-size-18 text-decoration-underline ml-5 pl-5">
-                                <a class="text-dark" href="#">View more</a>
+                            <div class="row font-size-18 text-decoration-underline ml-5 pl-5 ">
+                                <a class="text-dark" href="/user/<%- user != null ? user._id : "" %>/noti">View more</a>
                             </div>
                         </div>
                     </li>
