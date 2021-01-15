@@ -1,7 +1,7 @@
 const express = require("express");
 
 const requiredLogIn = require("../middleware/RequiredLogin");
-const { Product } = require("../database/models/Product");
+const Product = require("../database/models/Product");
 const User = require("../database/models/User");
 const router = express.Router();
 
@@ -19,7 +19,7 @@ router.get("/:animal/:breed", requiredLogIn, async (req, res) => {
   const shop = req.shop;
   const user = req.user;
   res.render("MainView", { allPets, shop, user });
-}
+})
 
 router.get("/customer/:page", requiredLogIn, async (req, res) => {
   const { page } = req.params;
