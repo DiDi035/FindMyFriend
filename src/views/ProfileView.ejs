@@ -37,58 +37,75 @@
     <script src="/javascript/profileImage.js"></script>
   </head>
 
-  <body>
-    <%- include('HeaderNavBar.ejs', {curUser, curUserType}) -%>
-    <div class="container-md Santation">
-      <nav aria-label="breadcrumb">
-        <ol class="breadcrumb bg-white py-0">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item active" aria-current="page">
-            User Profile
-          </li>
-        </ol>
-      </nav>
-      <div class="border mx-auto shadow">
-        <div class="row">
-          <div class="small-12 medium-2 large-2 columns">
-            <div class="circle">
-              <img class="profile-pic" src="data:image/png;base64,<%= typeof
-              curUser.avatar != "undefined" ? curUser.avatar : "" %>">
-            </div>
-            <p><%= typeof msg != "undefined" ? msg : "" %></p>
-            <form
-              class="p-image"
-              action="/user/<%= curUser._id %>/uploadAvatar"
-              method="POST"
-              enctype="multipart/form-data"
-            >
-              <i class="fa fa-edit upload-button"></i>
-              <input
-                class="file-upload"
-                type="file"
-                name="fileAva"
-                onchange="this.form.submit();"
-              />
-            </form>
-          </div>
-        </div>
-        <div class="container-md mx-auto">
-          <form
-            action="/user/<%= curUser._id %>/profile?_method=PUT"
-            method="POST"
-          >
-            <div class="input-group mt-4">
-              <div class="input-group-addon">
-                <i class="far fa-address-book attributes"></i>
-              </div>
-              <input
-                class="form-control border-0"
-                value="<%= curUser.name %>"
-                id="username"
-                name="username"
-                type="text"
-                placeholder="Your Name"
-              />
+<body>
+    <%- include('HeaderNavBar.ejs',{shop,user}) -%>
+        <div class="container-md Santation">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-white py-0">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+                </ol>
+            </nav>
+            <div class="border mx-auto shadow">
+
+                <div class="container-md mx-auto">
+                    <form action="'/shop/'+shop.name+'/editProfile'" method="POST">
+                        <div class="row">
+                            <div class="small-12 medium-2 large-2 columns">
+                                <div class="circle">
+                                    <img class="profile-pic"
+                                        src="#">
+                                </div>
+                                <div class="p-image">
+                                    <i class="fa fa-edit upload-button"></i>
+                                    <input class="file-upload" type="file" name="avatar" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mt-4">
+                            <div class="input-group-addon">
+                                <i class="far fa-address-book attributes"></i>
+                            </div>
+                            <input class="form-control border-0" id="username" name="name" type="text"
+                                placeholder="Your Name" value="<%= shop.name%>" />
+                        </div>
+                        <hr class="mt-0" />
+                        <div class="input-group mt-0">
+                            <div class="input-group-addon">
+                                <i class="fa fa-envelope-o attributes"></i>
+                            </div>
+                            <input class="form-control border-0" id="email" name="email" type="email" readonly
+                                placeholder="Email" value="<%= shop.email%>" />
+                        </div>
+                        <hr class="mt-0" />
+                        <div class="input-group mt-0">
+                            <div class="input-group-addon">
+                                <i class="fas fa-key attributes"></i>
+                            </div>
+                            <input class="form-control border-0" id="password" name="password" type="password"
+                                placeholder="New Password" />
+                        </div>
+                        <hr class="mt-0" />
+                        <div class="input-group mt-0">
+                            <div class="input-group-addon">
+                                <i class="fas fa-home attributes"></i>
+                            </div>
+                            <input class="form-control border-0" id="address" name="address" type="text"
+                                placeholder="Address" value="<%= shop.address%>" />
+                        </div>
+                        <hr class="mt-0" />
+                        <div class="input-group mt-0">
+                            <div class="input-group-addon">
+                                <i class="fas fa-phone-alt attributes"></i>
+                            </div>
+                            <input class="form-control border-0" id="tel" name="contact" type="tel"
+                                placeholder="Phone Number" value="<%= shop.contact%>" />
+                        </div>
+                        <hr class="mt-0" />
+                        <div class="text-center"><input type="submit" value="Update Profile">
+                        </div>
+                    </form>
+                </div>
             </div>
             <hr class="mt-0" />
             <div class="input-group mt-0">
@@ -125,7 +142,7 @@
               </div>
               <input
                 class="form-control border-0"
-                value="<%= curUser.adress %>"
+                value="<%= curUser.address %>"
                 id="address"
                 name="address"
                 type="text"

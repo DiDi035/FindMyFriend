@@ -1,7 +1,7 @@
 const express = require("express");
 
 const requiredLogIn = require("../middleware/RequiredLogin");
-const { Product } = require("../database/models/Product");
+const Product = require("../database/models/Product");
 const User = require("../database/models/User");
 const router = express.Router();
 

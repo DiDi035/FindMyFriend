@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const validator = require("validator");
 const bcrypt = require("bcrypt");
+const Product = require("./Product");
 
 const { noticeSchema } = require("./Notice");
 
@@ -11,6 +12,7 @@ const shopSchema = new mongoose.Schema({
   },
   avatar: {
     type: Buffer,
+    default: undefined,
   },
   contact: {
     type: String,
@@ -87,6 +89,13 @@ shopSchema.pre("save", async function (next) {
   }
   next();
 });
+
+// User's task destruction
+shopSchema.pre('remove', async function(next){
+  const shop = this
+  await Product.deleteMany({owner: shop._id})
+  next()
+})
 
 const Shop = mongoose.model("Shop", shopSchema);
 

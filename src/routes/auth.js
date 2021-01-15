@@ -45,38 +45,35 @@ router.post("/shop/login", async (req, res) => {
 });
 
 router.post("/register", async (req, res) => {
-    const { username, password, email, type } = req.body;
-    try {
-        if (type == "customer") {
-            const user = new User({
-                name: username,
-                email: email,
-                password: await bcrypt.hash(password, 12),
-                notice: new Notice({
+  const { username, password, email, type } = req.body;
+  try {
+    if (type == "customer") {
+      const user = new User({
+        name: username,
+        email: email,
+        password: await bcrypt.hash(password, 12),
+        notice: new Notice({
                     name: "Welcome",
                     detail: "Welcome to Find my friend community - a special thanks from admin",
                     type: "admin"
                 })
-            });
-            console.log(user.password)
-            await user.save();
-            res.redirect("/auth/customer/login");
-        } else if (type == "shop") {
-            const shop = new Shop({
-                name: username,
-                email: email,
-                password: password,
-                notice: new Notice({
+      });
+      await user.save();
+      res.redirect("/auth/customer/login");
+    } else if (type == "shop") {
+      const shop = new Shop({
+        name: username,
+        email: email,
+        password: password,
+        avatar: undefined,
+        notice: new Notice({
                     name: "Welcome",
                     detail: "Welcome to Find my friend community - a special thanks from admin",
                     type: "admin"
                 })
-            });
-            await shop.save();
-            res.redirect("/auth/shop/login");
-        }
-    } catch (e) {
-        res.redirect("/auth/register")
+      });
+      await shop.save();
+      res.redirect("/auth/shop/login");
     }
 });
 

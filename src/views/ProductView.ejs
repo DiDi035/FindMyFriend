@@ -16,26 +16,41 @@
     <%- include('HeaderNavBar.ejs',{shop,user}) -%>
     <br />
     <div class="container Santation font-size-14 h-100">
-        <div class="row">
-            <!-- breadcrumb -->
-            <div class="col">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb no-bg font-size-18">
-                        <li class="breadcrumb-item" aria-label="breadcrumb">
-                            <!-- might need to change link here -->
-                            <a class="grass" href="/home">Home</a>
-                        </li>
-                        <li class="breadcrumb-item" aria-label="breadcrumb">
-                            <!-- might need to change link here -->
-                            <a class="grass" href="#">Shop ABC</a>
-                        </li>
-                        <li class="breadcrumb-item active" aria-current="page">
-                            <!-- change breadcrumb here-->
-                            Dog
-                        </li>
-                    </ol>
-                </nav>
-            </div>
+      <div class="row">
+        <!-- breadcrumb -->
+        <div class="col">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb no-bg font-size-18">
+              <li class="breadcrumb-item" aria-label="breadcrumb">
+                <!-- might need to change link here -->
+                <a class="grass" href="/home">Home</a>
+              </li>
+              <li class="breadcrumb-item" aria-label="breadcrumb">
+                <!-- might need to change link here -->
+                <a class="grass" href="#">Shop ABC</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                <!-- change breadcrumb here-->
+                Dog
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+      <div class="row mt-3 mb-1">
+        <div class="col-5-sm my-auto" id="images">
+          <div class="sp-loading">
+            <img src="/images/sp-loading.gif" alt="" /><br />LOADING IMAGES
+          </div>
+          <div class="sp-wrap">
+            <% if (pet !=undefined ) {%>
+              <%for (i=0;i < pet.images.length;i++){%>
+                <a href="data:image/jpeg;base64,<%= new Buffer(pet.images[i]).toString('base64')%>">
+                  <img src="data:image/jpeg;base64,<%= new Buffer(pet.images[i]).toString('base64')%>" alt="" /></a>
+                <%}%>
+                  <%}%>
+          </div>
+          <div id="imgLabel">-- Pet Images --</div>
         </div>
         <div class="row mt-3 mb-1">
             <div class="col-5-sm my-auto" id="images">
