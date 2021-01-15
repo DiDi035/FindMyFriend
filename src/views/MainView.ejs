@@ -32,22 +32,13 @@
                     </ol>
                 </nav>
             </div>
-            <!-- sort -->
-            <div class="col my-auto d-flex justify-content-end">
-                <button class="btn p-2 rounded-pill bg-raspberry text-light m-1 font-size-14">
-                    Sort by price
-                </button>
-                <button class="btn p-2 rounded-pill bg-raspberry text-light m-1 font-size-14">
-                    Sort by age
-                </button>
-            </div>
         </div>
         <div class="row">
             <!-- products -->
             <!-- 9 products per page -->
             <!-- change picture, name and price -->
             <% for (let i = 0; i < allPets.length; ++i) { %>
-            <div class="col">
+            <div class="col-4">
                 <div class="">
                     <a href="/product/<%= allPets[i]._id %>" class="card no-border no-bg col badge badge-light width">
                         <img src="data:image/jpeg;base64,<%= new Buffer(allPets[i].images[0]).toString('base64')%>" class="card-img-top img-fluid w-100 rounded mx-auto d-block" alt="Responsive image" />
@@ -64,37 +55,6 @@
             </div>
             <% } %>
         </div>
-      </div>
-
-      <div class="row">
-        <!-- products -->
-        <!-- 9 products per page -->
-        <!-- change picture, name and price -->
-        <% for (let i = 0; i < allPets.length; ++i) { %>
-        <div class="col">
-          <div class="">
-            <a
-              href="/product/<%= allPets[i]._id %>"
-              class="card no-border no-bg col badge badge-light width"
-            >
-              <img
-                src="data:image/jpeg;base64,<%= new Buffer(allPets[i].images[0]).toString('base64')%>"
-                class="card-img-top img-fluid w-100 rounded mx-auto d-block"
-                alt="Responsive image"
-              />
-              <div class="card-body">
-                <h5 class="card-text text-center font-weight-bolder">
-                  <%= allPets[i].title %>
-                </h5>
-                <h6 class="card-text text-center">
-                  <%= allPets[i].price %> VND
-                </h6>
-              </div>
-            </a>
-          </div>
-        </div>
-        <% } %>
-      </div>
     </div>
     <div class="row justify-content-center">
         <!-- pages -->

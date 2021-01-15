@@ -41,7 +41,7 @@
               <div class="infoWrap">
                 <div class="itemImageAndName">
                   <img
-                    src="/images/DogAndCat.jpeg"
+                    src="data:image/jpeg;base64,<%= new Buffer(chosenUserCart[i].images[0]).toString('base64')%>"
                     class="rounded float-left d-none d-sm-none d-md-none d-lg-block"
                   />
                   <h4 style="color: #7f867b"><%= chosenUserCart[i].title %></h4>
@@ -50,9 +50,11 @@
                   <h4 style="color: #7f867b">
                     <%= chosenUserCart[i].price %> VND
                   </h4>
-                  <button class="buttonRemove border-0 btn-lg">
-                    <i class="fa fa-trash" style="color: #7f867b"></i>
-                  </button>
+                  <form action="/user/<%= chosenUserCart[i]._id %>/removeCart?_method=PUT" method="POST">
+                    <button class="buttonRemove border-0 btn-lg">
+                      <i class="fa fa-trash" style="color: #7f867b"></i>
+                    </button>
+                  </form>
                 </div>
               </div>
             </li>
@@ -66,8 +68,7 @@
       <div class="col text-right">
         <div class="itemCost">
           <h3 class="costTotal">
-            <%- chosenUserCart.length > 0 ? chosenUserCart.reduce((a, b) =>
-            a.price + b.price) : 0 %> VND
+            <%= total %>  VND
           </h3>
           <h3 class="total">Total</h3>
         </div>

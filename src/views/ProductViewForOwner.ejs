@@ -48,12 +48,12 @@
             <div class="col-5-lg my-auto" id="images">
               <div class="row mt-3 mb-1">
                 
-                <div class="sp-loading">
+                <!-- <div class="sp-loading">
                   <img src="/images/sp-loading.gif" alt="" /><br /> LOADING IMAGES
-                </div>
+                </div> -->
 
                 <div class="sp-wrap">
-                  <% if (product !=undefined ) {%>
+                  <% if (product != undefined ) {%>
                     <%for ( i=0; i < product.images.length; i++) {%>
                       <a href="data:image/jpeg;base64,<%= new Buffer(product.images[i]).toString('base64')%>">
                         <img src="data:image/jpeg;base64,<%= new Buffer(product.images[i]).toString('base64')%>"

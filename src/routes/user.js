@@ -9,7 +9,8 @@ const router = express.Router();
 
 const User = require("../database/models/User");
 const Shop = require("../database/models/Shop");
-const Notice = require("../database/models/Notice");
+const { Notice } = require("../database/models/Notice");
+const { Product } = require("../database/models/Product");
 
 // Check if uploaded file type valid
 const checkFileType = (file, cb) => {
@@ -38,10 +39,15 @@ router.get("/:userId/cart", requiredLogIn, async (req, res) => {
   const shop = req.shop;
   const user = req.user;
   const chosenUserCart = user.cart.slice();
+  let total = 0;
+  for (let i = 0; i < chosenUserCart.length; ++i) {
+    total += chosenUserCart[i].price;
+  }
   res.render("BasketView", {
     user,
     shop,
     chosenUserCart,
+    total,
   });
 });
 
@@ -49,6 +55,16 @@ router.get("/:userId/noti", requiredLogIn, async (req, res) => {
   const shop = req.shop;
   const user = req.user;
   res.render("NotificationView", { user, shop });
+});
+
+router.post("/:petId/addToCart", requiredLogIn, async (req, res) => {
+  const shop = req.shop;
+  const user = req.user;
+  const { petId } = req.params;
+  const pet = await Product.findById(petId);
+  user.cart.push(pet);
+  await user.save();
+  res.redirect("/product/" + petId);
 });
 
 router.post("/:userId/uploadAvatar", requiredLogIn, async (req, res) => {
@@ -111,6 +127,20 @@ router.put("/:userId/profile", requiredLogIn, async (req, res) => {
   res.redirect("/user/" + user._id + "/profile");
 });
 
+router.put("/:petId/removeCart", requiredLogIn, async (req, res) => {
+  const shop = req.shop;
+  const user = req.user;
+  const { petId } = req.params;
+  for (let i = 0; i < user.cart.length; ++i) {
+    if (user.cart[i]._id == petId) {
+      user.cart.splice(i, 1);
+      break;
+    }
+  }
+  await user.save();
+  res.redirect("/user/" + user._id + "/cart");
+});
+
 router.put("/:userID/deleteNoti/:noticeIndex", async (req, res) => {
   const { userID, noticeIndex } = req.params;
   const userUpdate = await User.findById(userID);
@@ -120,7 +150,7 @@ router.put("/:userID/deleteNoti/:noticeIndex", async (req, res) => {
   res.redirect("/user/" + userID + "/noti");
 });
 
-router.put("/:userId/purchase", async (req, res) => {
+router.put("/:userId/purchase", requiredLogIn, async (req, res) => {
   const shop = req.shop;
   const user = req.user;
   for (let i = 0; i < user.cart.length; ++i) {

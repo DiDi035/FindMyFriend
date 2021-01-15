@@ -47,19 +47,24 @@
                 </ol>
             </nav>
             <div class="border mx-auto shadow">
-
-                <div class="container-md mx-auto">
-                    <form action="'/shop/'+shop.name+'/editProfile'" method="POST">
+                <div class="container-md ">
+                    <form action="/shop/<%= shop.name %>/editProfile" method="POST">
                         <div class="row">
                             <div class="small-12 medium-2 large-2 columns">
                                 <div class="circle">
                                     <img class="profile-pic"
-                                        src="#">
+                                    src="<%- typeof shop.avatar ==
+                                    "undefined" ? "/images/default_avatar.jpg" :
+                                    "data:image/png;base64," + shop.avatar %>">
                                 </div>
-                                <div class="p-image">
+                                <form 
+                                class="p-image"
+                                action="/shop/<%= shop.name %>/uploadAvatar"
+                                method="POST"
+                                enctype="multipart/form-data">
                                     <i class="fa fa-edit upload-button"></i>
-                                    <input class="file-upload" type="file" name="avatar" />
-                                </div>
+                                    <input class="file-upload" type="file" name="fileAva" onchange="this.form.submit();" />
+                                </form>
                             </div>
                         </div>
                         <div class="input-group mt-4">
@@ -106,66 +111,6 @@
                         </div>
                     </form>
                 </div>
-            </div>
-            <hr class="mt-0" />
-            <div class="input-group mt-0">
-              <div class="input-group-addon">
-                <i class="fa fa-envelope-o attributes"></i>
-              </div>
-              <input
-                class="form-control border-0"
-                value="<%= curUser.email %>"
-                id="email"
-                name="email"
-                type="email"
-                placeholder="Email"
-              />
-            </div>
-            <hr class="mt-0" />
-            <div class="input-group mt-0">
-              <div class="input-group-addon">
-                <i class="fas fa-key attributes"></i>
-              </div>
-              <input
-                class="form-control border-0"
-                value="<%= curUser.password %>"
-                id="password"
-                name="password"
-                type="password"
-                placeholder="New Password"
-              />
-            </div>
-            <hr class="mt-0" />
-            <div class="input-group mt-0">
-              <div class="input-group-addon">
-                <i class="fas fa-home attributes"></i>
-              </div>
-              <input
-                class="form-control border-0"
-                value="<%= curUser.address %>"
-                id="address"
-                name="address"
-                type="text"
-                placeholder="Address"
-              />
-            </div>
-            <hr class="mt-0" />
-            <div class="input-group mt-0">
-              <div class="input-group-addon">
-                <i class="fas fa-phone-alt attributes"></i>
-              </div>
-              <input
-                class="form-control border-0"
-                value="<%= curUser.phone %>"
-                id="tel"
-                name="tel"
-                type="tel"
-                placeholder="Phone Number"
-              />
-            </div>
-            <hr class="mt-0" />
-            <div class="text-center">
-              <input type="submit" value="Update Profile" />
             </div>
           </form>
         </div>
